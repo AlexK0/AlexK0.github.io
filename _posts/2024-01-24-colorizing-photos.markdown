@@ -54,7 +54,6 @@ git checkout be725ca6c5f411c47550df951546537d7202c9bc
 cd ..
 ```
 
-
 After that install all python dependencies:
 ```bash
 pip3 install --user -r DeOldify/requirements.txt
@@ -143,14 +142,11 @@ PYTHONPATH=./DeOldify/ python3 runner.py photos/in/ photos/out/
 
 Here is the result:
 
-| ![Black and white photo](/assets/posts-images/colorizing-photos/bw.jpg) |
-|:-----------------------------------------------------------------------:|
-|                          Black and white photo                          |
+![Black and white photo](/assets/posts-images/colorizing-photos/bw.jpg)
+_Black and white photo_
 
-| ![Colorized photo](/assets/posts-images/colorizing-photos/bw-color.jpg) |
-|:-----------------------------------------------------------------------:|
-|                             Colorized photo                             |
+![Colorized photo](/assets/posts-images/colorizing-photos/bw-color.jpg)
+_Colorized photo_
 
-| ![Original photo](/assets/posts-images/colorizing-photos/original.jpg) |
-|:----------------------------------------------------------------------:|
-|                             Original photo                             |
+![Original photo](/assets/posts-images/colorizing-photos/original.jpg)
+_Original photo_
