@@ -6,7 +6,7 @@ order: 4
 
 ### Hey there!
 
-I'm Aleksandr Korepanov, a software geek who loves diving into code and making it better.
+I'm Aleksandr Korepanov, a software engineer who loves diving into code and making it better.
 
 Whether it's fixing bugs or fine-tuning, I'm all about the thrill of improving every bit of code I come across.
 

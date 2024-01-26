@@ -116,7 +116,7 @@ Run all Kotlin/JS tests from the console:
 Also, you may add `-Pfd.kotlin.js.debugMode=2` option to you tests (in IDE it works as well).
 If this option is enabled, compiler dumps IR after each lowering. They will be dumped to `js/js.tests/build/out/irBox/builtins/${testName}-irdump` directory.
 Extremely useful for debugging!
-![debugMode example](/assets/posts-images/kotlin-daemonology/img_debugMode.png)
+![debugMode example](/assets/img/posts/kotlin-daemonology/img_debugMode.png)
 
 There is another option `-Pfd.org.jetbrains.kotlin.compiler.ir.dump.strategy=KotlinLike` that makes the IR dump more readable (but less detailed).
 
@@ -247,10 +247,10 @@ jcmd ${PID} VM.uptime
 Must have tool! You can find it [here](https://www.oracle.com/java/technologies/javase/products-jmc8-downloads.html).
 
 It allows you to control and monitor the resources of [your daemons](#daemons):
-![resources](/assets/posts-images/kotlin-daemonology/img_jmc_resources.png)
+![resources](/assets/img/posts/kotlin-daemonology/img_jmc_resources.png)
 
 Also, it may run [jcmd](#jcmd) commands from the UI:
-![run jcmd](/assets/posts-images/kotlin-daemonology/img_jmc_control.png)
+![run jcmd](/assets/img/posts/kotlin-daemonology/img_jmc_control.png)
 
 And other helpful things.
 
@@ -317,7 +317,7 @@ You may pass options to Kotlin daemon JVM via `kotlin.daemon.jvm.options` (and `
 In this case IDE with the debugger client connects to Kotlin or Gradle daemon JVM server.
 
 - Prepare a debug configuration in IDE, it should look like that:
-![debug configuration](/assets/posts-images/kotlin-daemonology/img_debug_client_config.png)
+![debug configuration](/assets/img/posts/kotlin-daemonology/img_debug_client_config.png)
 - Before continuing make sure, that there are no available [daemons](#stopping-daemons).
 - Do not forget about breakpoints.
 - Start the daemon with the following JVM options (these options must correspond to the options from the debug config):
@@ -339,7 +339,7 @@ In this case IDE with the debugger client connects to Kotlin or Gradle daemon JV
 In this case Kotlin or Gradle daemon JVM client connects to IDE with the debugger server.
 
 - Prepare a debug configuration in IDE, it should look like that:
-![debug configuration](/assets/posts-images/kotlin-daemonology/img_debug_server_config.png)
+![debug configuration](/assets/img/posts/kotlin-daemonology/img_debug_server_config.png)
 - Before continuing make sure, that there are no available [daemons](#stopping-daemons).
 - From IDE start listing a debugger connection.
 - Do not forget about breakpoints.
@@ -366,7 +366,7 @@ Note: All `,` for Kotlin daemon must be escape with two slashes `\\,`.
 Works like a magic: just open `Profiler` tab, find you `KotlinCompileDaemon` process and attach.
 
 If you can't find `Profiler` tab for some reasons - open `Actions` (for macOS: Command + Shift + A) and enter `Profiler`
-![How to find Profiler in IDE](/assets/posts-images/kotlin-daemonology/img_Actions_Profiler.png)
+![How to find Profiler in IDE](/assets/img/posts/kotlin-daemonology/img_Actions_Profiler.png)
 
 Java flight recorder complains about stack depth, therefore it makes sense to tune and use it manually.
 

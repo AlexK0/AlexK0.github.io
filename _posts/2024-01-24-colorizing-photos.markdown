@@ -3,6 +3,7 @@ title:  "Colorizing a black and white photo"
 date:   2024-01-24 12:00:00 +0100
 categories: [Blogging, ML]
 tags: [ML]
+image: /assets/img/posts/colorizing-photos/preview.jpg
 ---
 
 We all have a treasure trove of old photos passed down from our parents, grandparents, and so on. Often, these photos are in black and white,
@@ -142,11 +143,11 @@ PYTHONPATH=./DeOldify/ python3 runner.py photos/in/ photos/out/
 
 Here is the result:
 
-![Black and white photo](/assets/posts-images/colorizing-photos/bw.jpg)
+![Black and white photo](/assets/img/posts/colorizing-photos/bw.jpg)
 _Black and white photo_
 
-![Colorized photo](/assets/posts-images/colorizing-photos/bw-color.jpg)
+![Colorized photo](/assets/img/posts/colorizing-photos/bw-color.jpg)
 _Colorized photo_
 
-![Original photo](/assets/posts-images/colorizing-photos/original.jpg)
+![Original photo](/assets/img/posts/colorizing-photos/original.jpg)
 _Original photo_
