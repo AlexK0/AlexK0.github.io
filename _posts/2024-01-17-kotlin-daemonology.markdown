@@ -1,7 +1,7 @@
 ---
 title:  "Kotlin daemonology notes"
 date:   2024-01-17 12:00:00 +0100
-categories: [Blogging, Kotlin]
+categories: [Notes, Kotlin]
 tags: [Kotlin]
 ---
 
