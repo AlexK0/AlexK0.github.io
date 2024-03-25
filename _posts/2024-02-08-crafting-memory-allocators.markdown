@@ -3,7 +3,7 @@ title: "Crafting memory allocators"
 date: 2024-02-08 12:00:00 +0100
 categories: [ Blogging, Development ]
 tags: [ C/C++, Development ]
-image: /assets/img/posts/crafting-memory-allocators/0-complete.png
+image: /assets/img/posts/crafting-memory-allocators/0_title.jpg
 published: true
 ---
 
