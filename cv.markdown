@@ -2,6 +2,8 @@
 permalink: /about/cv/
 ---
 
+<link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
 # Aleksandr Korepanov
 
 ---
@@ -31,12 +33,20 @@ Well versed in modern C++ and Linux; have extensive hands-on experience with Kot
 
 **[JetBrains](https://www.jetbrains.com/) (Saint Petersburg, Russia; Amsterdam, Netherlands)**
 
-_**Senior Software Developer (Nov 2021 – now)**_
-- Adopting [LLDB debugger](https://lldb.llvm.org/) for Windows, improving its performance on huge binaries (mainly for Unreal Engine)
-- Improving LLDB expression evaluation: template functions, builtins, operators usage
+_**Senior Software Developer at [Rider for C++](https://www.jetbrains.com/lp/rider-unreal) (Oct 2023 – Now)**_
+- Maintaining an internal fork of [the LLDB debugger](https://lldb.llvm.org) for Windows
+- Improving LLDB [performance on huge binaries](https://blog.jetbrains.com/dotnet/2025/01/31/faster-debugging-in-rider) (mainly for Unreal Engine)
+- Improving [Natvis](https://learn.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects) support
+- Improving LLDB expression evaluation: template functions, builtins, operators usage, Natvis intrinsics
+- Modifying and adopting LLDB to run [on Xbox for game debugging](https://www.jetbrains.com/lp/rider-consoles)
+- Adding support for C++20 features to LLDB: coroutines, char8_t
 - Writing functional and unit tests for LLDB
+- Hiring and mentoring an intern
+
+_**Senior Software Developer at [Kotlin/JS](https://kotlinlang.org/docs/js-overview.html) (Nov 2021 – Feb 2024)**_
+
 - Developing [Kotlin/JS](https://kotlinlang.org/docs/js-overview.html) backend of [Kotlin](https://github.com/JetBrains/kotlin) compiler
-- Designing and developing incremental compilation infrastructure for Kotlin/JS
+- Designing and developing [incremental compilation infrastructure for Kotlin/JS](https://kotlinlang.org/docs/js-ir-compiler.html#incremental-compilation-for-development-binaries)
 - Writing Kotlin compiler frontend checkers and diagnostics
 - Performing optimizations of Kotlin/JS backend compiler part
 - Implementing compiler optimizations for generated JS code
