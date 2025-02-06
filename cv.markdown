@@ -2,7 +2,7 @@
 permalink: /about/cv/
 ---
 
-<link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+<link rel="stylesheet" href="/assets/css/pico.min.css">
 
 # Aleksandr Korepanov
 
@@ -41,7 +41,7 @@ _**Senior Software Developer at [Rider for C++](https://www.jetbrains.com/lp/rid
 - Modifying and adopting LLDB to run [on Xbox for game debugging](https://www.jetbrains.com/lp/rider-consoles)
 - Adding support for C++20 features to LLDB: coroutines, char8_t
 - Writing functional and unit tests for LLDB
-- Hiring and mentoring an intern
+- Mentoring an intern
 
 _**Senior Software Developer at [Kotlin/JS](https://kotlinlang.org/docs/js-overview.html) (Nov 2021 – Feb 2024)**_
 
