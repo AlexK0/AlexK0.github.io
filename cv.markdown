@@ -130,3 +130,6 @@ Specialist’s Degree (Hons), Engineer Mathematician, Applied Mathematics
 ### Languages
 - Russian (Native)
 - English (Professional Working)
+
+---
+<button onclick="window.print()">Print This CV</button>
