@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Language Learner</title>
-    <link rel="stylesheet" href="/assets/css/language-learner.css">
+    <title>Words Memorizer</title>
+    <link rel="stylesheet" href="/assets/css/words-memorizer.css">
 </head>
 <body>
     <div class="app-container">
         <header>
-            <h1>Language Learner</h1>
+            <h1>Words Memorizer</h1>
             <div class="theme-toggle">
                 <button id="theme-toggle-btn">🌙</button>
             </div>
@@ -36,7 +36,13 @@
                     </select>
                 </div>
 
-                <button id="add-word-btn" class="primary-btn">Add Word</button>
+                <div class="add-word-main">
+                    <button id="add-word-btn" class="primary-btn">Add Word</button>
+                    <div class="add-word-actions">
+                        <button id="import-text-btn" class="secondary-btn small-btn">Add from Text</button>
+                        <button id="import-csv-btn" class="secondary-btn small-btn">Add from CSV</button>
+                    </div>
+                </div>
             </section>
 
             <section id="learning-section" class="card">
@@ -68,9 +74,6 @@
             <section id="vocabulary-section" class="card">
                 <h2>My Vocabulary</h2>
                 <div class="vocabulary-actions">
-                    <button id="import-text-btn" class="secondary-btn small-btn">Add from Text</button>
-                    <button id="import-csv-btn" class="secondary-btn small-btn">Add from CSV</button>
-                    <div class="button-separator"></div>
                     <label for="import-file" class="file-input-label small-btn">Import JSON</label>
                     <button id="export-btn" class="secondary-btn small-btn">Export JSON</button>
                     <input type="file" id="import-file" accept=".json" style="display: none;">
@@ -86,6 +89,7 @@
                             <option value="alphabetical">Alphabetical</option>
                             <option value="progress">Learning Progress</option>
                         </select>
+                        <button id="sort-order-btn" class="sort-order-btn" title="Toggle sort order">↑</button>
                     </div>
                 </div>
                 <div id="vocabulary-list">
@@ -512,6 +516,8 @@
         // ===== UI MANAGEMENT =====
 
         const UIManager = {
+            sortAscending: true, // Track current sort direction
+
             init: function() {
                 this.initThemeToggle();
                 this.initAddWordForm();
@@ -649,17 +655,26 @@
                 const vocabularyList = document.getElementById('vocabulary-list');
                 let filteredVocabulary = VocabularyManager.getFilteredVocabulary(searchTerm, language);
 
-                // Apply sorting
+                // Apply sorting with direction
                 switch (sortOption) {
                     case 'alphabetical':
-                        filteredVocabulary.sort((a, b) => a.word.toLowerCase().localeCompare(b.word.toLowerCase()));
+                        filteredVocabulary.sort((a, b) => {
+                            const comparison = a.word.toLowerCase().localeCompare(b.word.toLowerCase());
+                            return this.sortAscending ? comparison : -comparison;
+                        });
                         break;
                     case 'progress':
-                        filteredVocabulary.sort((a, b) => b.masteryLevel - a.masteryLevel);
+                        filteredVocabulary.sort((a, b) => {
+                            const comparison = b.masteryLevel - a.masteryLevel;
+                            return this.sortAscending ? comparison : -comparison;
+                        });
                         break;
                     case 'dateAdded':
                     default:
-                        filteredVocabulary.sort((a, b) => new Date(a.dateAdded) - new Date(b.dateAdded));
+                        filteredVocabulary.sort((a, b) => {
+                            const comparison = new Date(a.dateAdded) - new Date(b.dateAdded);
+                            return this.sortAscending ? comparison : -comparison;
+                        });
                         break;
                 }
 
@@ -788,6 +803,7 @@
             initSearchAndFilter: function() {
                 const searchInput = document.getElementById('search-input');
                 const sortSelect = document.getElementById('sort-select');
+                const sortOrderBtn = document.getElementById('sort-order-btn');
 
                 const handleSearchFilter = () => {
                     const searchTerm = searchInput.value.trim();
@@ -798,6 +814,18 @@
 
                 searchInput.addEventListener('input', handleSearchFilter);
                 sortSelect.addEventListener('change', handleSearchFilter);
+
+                // Handle sort order toggle
+                sortOrderBtn.addEventListener('click', () => {
+                    this.sortAscending = !this.sortAscending;
+
+                    // Update button display
+                    sortOrderBtn.textContent = this.sortAscending ? '↑' : '↓';
+                    sortOrderBtn.title = this.sortAscending ? 'Sort ascending (click for descending)' : 'Sort descending (click for ascending)';
+
+                    // Refresh the vocabulary list with new sort order
+                    handleSearchFilter();
+                });
             },
 
             initImportExport: function() {
@@ -1350,6 +1378,24 @@
                                         // Check if game is complete
                                         if (matchedPairs === gameWords.length) {
                                             this.showNotification('Congratulations! You matched all pairs!', 'success');
+
+                                            // Update mastery level for words used in the matching game
+                                            // Since all pairs were matched, this is 100% success rate
+                                            gameWords.forEach(word => {
+                                                const currentMastery = word.masteryLevel || 0;
+                                                const masteryIncrease = 1; // Excellent performance (100% success)
+                                                const newMastery = Math.min(currentMastery + masteryIncrease, 5);
+
+                                                VocabularyManager.updateWord(word.id, {
+                                                    masteryLevel: newMastery,
+                                                    lastPracticed: new Date().toISOString()
+                                                });
+                                            });
+
+                                            // Refresh vocabulary list to show updated progress
+                                            const currentSearchTerm = document.getElementById('search-input').value.trim();
+                                            const currentSortOption = document.getElementById('sort-select').value;
+                                            UIManager.renderVocabularyList(currentSearchTerm, 'all', currentSortOption);
                                         }
                                     }, 500);
                                 } else {
@@ -1505,6 +1551,32 @@
                         document.querySelector('.quiz-controls').style.display = 'none';
                         document.getElementById('quiz-results').style.display = 'block';
                         document.getElementById('quiz-score').textContent = score;
+
+                        // Update mastery level for words used in the quiz
+                        const successRate = score / quizWords.length;
+                        quizWords.forEach(word => {
+                            const currentMastery = word.masteryLevel || 0;
+                            let masteryIncrease = 0;
+
+                            if (successRate >= 0.8) {
+                                masteryIncrease = 1; // Excellent performance
+                            } else if (successRate >= 0.6) {
+                                masteryIncrease = 0.5; // Good performance
+                            } else if (successRate >= 0.4) {
+                                masteryIncrease = 0.25; // Fair performance
+                            }
+
+                            const newMastery = Math.min(currentMastery + masteryIncrease, 5);
+                            VocabularyManager.updateWord(word.id, {
+                                masteryLevel: newMastery,
+                                lastPracticed: new Date().toISOString()
+                            });
+                        });
+
+                        // Refresh vocabulary list to show updated progress
+                        const currentSearchTerm = document.getElementById('search-input').value.trim();
+                        const currentSortOption = document.getElementById('sort-select').value;
+                        UIManager.renderVocabularyList(currentSearchTerm, 'all', currentSortOption);
                     };
 
                     // Initialize first question
@@ -1647,6 +1719,32 @@
                         document.querySelector('.scramble-controls').style.display = 'none';
                         document.getElementById('scramble-results').style.display = 'block';
                         document.getElementById('scramble-score').textContent = score;
+
+                        // Update mastery level for words used in the scramble game
+                        const successRate = score / gameWords.length;
+                        gameWords.forEach(word => {
+                            const currentMastery = word.masteryLevel || 0;
+                            let masteryIncrease = 0;
+
+                            if (successRate >= 0.8) {
+                                masteryIncrease = 1; // Excellent performance
+                            } else if (successRate >= 0.6) {
+                                masteryIncrease = 0.5; // Good performance
+                            } else if (successRate >= 0.4) {
+                                masteryIncrease = 0.25; // Fair performance
+                            }
+
+                            const newMastery = Math.min(currentMastery + masteryIncrease, 5);
+                            VocabularyManager.updateWord(word.id, {
+                                masteryLevel: newMastery,
+                                lastPracticed: new Date().toISOString()
+                            });
+                        });
+
+                        // Refresh vocabulary list to show updated progress
+                        const currentSearchTerm = document.getElementById('search-input').value.trim();
+                        const currentSortOption = document.getElementById('sort-select').value;
+                        UIManager.renderVocabularyList(currentSearchTerm, 'all', currentSortOption);
                     };
 
                     // Initialize first word

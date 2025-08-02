@@ -27,13 +27,27 @@
     --border-radius-md: 8px;
     --border-radius-lg: 12px;
 
-    /* Font sizes */
+    /* Font sizes - Desktop first */
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-md: 1rem;
     --font-size-lg: 1.25rem;
     --font-size-xl: 1.5rem;
     --font-size-xxl: 2rem;
+
+    /* Mobile-specific variables */
+    --mobile-font-size-xs: 0.875rem;
+    --mobile-font-size-sm: 1rem;
+    --mobile-font-size-md: 1.125rem;
+    --mobile-font-size-lg: 1.375rem;
+    --mobile-font-size-xl: 1.75rem;
+    --mobile-font-size-xxl: 2.25rem;
+
+    /* Touch-friendly sizes */
+    --mobile-button-height: 48px;
+    --mobile-input-height: 48px;
+    --mobile-spacing-md: 1.25rem;
+    --mobile-spacing-lg: 2rem;
 
     /* Transitions */
     --transition-fast: 0.2s;
@@ -249,6 +263,21 @@ main {
 }
 
 /* ===== ADD WORD SECTION ===== */
+.add-word-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.add-word-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    align-items: flex-end;
+}
+
 .translation-entry {
     display: flex;
     gap: var(--spacing-sm);
@@ -316,6 +345,30 @@ main {
     height: 32px;
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: var(--font-size-sm);
+}
+
+.sort-order-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    margin-left: var(--spacing-xs);
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    color: var(--text-color);
+    font-size: var(--font-size-md);
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.sort-order-btn:hover {
+    background-color: var(--primary-color-light);
+    color: white;
+    border-color: var(--primary-color);
 }
 
 .vocabulary-actions {
@@ -1155,73 +1208,226 @@ main {
 
 /* ===== RESPONSIVE ADJUSTMENTS ===== */
 @media (max-width: 768px) {
+    /* Mobile font sizes */
+    :root {
+        --font-size-xs: var(--mobile-font-size-xs);
+        --font-size-sm: var(--mobile-font-size-sm);
+        --font-size-md: var(--mobile-font-size-md);
+        --font-size-lg: var(--mobile-font-size-lg);
+        --font-size-xl: var(--mobile-font-size-xl);
+        --font-size-xxl: var(--mobile-font-size-xxl);
+    }
+
+    /* Layout adjustments */
     main {
         grid-template-columns: 1fr;
+        gap: var(--mobile-spacing-lg);
+    }
+
+    .app-container {
+        padding: var(--mobile-spacing-md);
+    }
+
+    /* Form and input improvements */
+    input, select, textarea {
+        min-height: var(--mobile-input-height);
+        font-size: var(--mobile-font-size-md);
+        padding: var(--spacing-md);
+    }
+
+    /* Button improvements for touch */
+    button {
+        min-height: var(--mobile-button-height);
+        font-size: var(--mobile-font-size-md);
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .primary-btn, .secondary-btn, .file-input-label, .game-btn {
+        width: 100%;
+        max-width: none;
+        margin: var(--spacing-sm) 0;
+        min-height: var(--mobile-button-height);
+    }
+
+    /* Small buttons need to be larger on mobile */
+    .small-btn {
+        min-height: var(--mobile-button-height) !important;
+        font-size: var(--mobile-font-size-sm) !important;
+        padding: var(--spacing-md) var(--spacing-lg) !important;
+        min-width: auto !important;
     }
 
     .translation-entry {
         flex-direction: column;
-        gap: var(--spacing-sm);
+        gap: var(--mobile-spacing-md);
         padding-right: 0;
-        padding-bottom: 30px;
+        padding-bottom: 40px;
     }
 
     .remove-translation-btn {
         top: auto;
         bottom: 0;
         right: 0;
+        width: 32px;
+        height: 32px;
     }
 
     .search-filter {
         flex-direction: column;
+        gap: var(--mobile-spacing-md);
     }
 
     .vocabulary-actions {
         flex-wrap: wrap;
         justify-content: center;
-        gap: var(--spacing-lg);
+        gap: var(--mobile-spacing-md);
     }
 
     .vocabulary-actions .secondary-btn,
     .vocabulary-actions .file-input-label {
         width: 100%;
-        max-width: 250px;
+        max-width: none;
     }
 
     .word-card {
         flex-direction: column;
+        padding: var(--mobile-spacing-md);
     }
 
-    /* Word image responsive CSS has been removed */
+    /* Word actions buttons - make them larger for mobile */
+    .word-actions button {
+        width: 44px;
+        height: 44px;
+        font-size: var(--mobile-font-size-lg);
+    }
 
+    /* Modal improvements */
     .modal-content {
-        margin: 10% 5%;
-        padding: var(--spacing-md);
+        margin: 5% 2%;
+        padding: var(--mobile-spacing-md);
+        max-height: 90vh;
+        overflow-y: auto;
     }
 
     .flashcard {
-        height: 400px;
+        height: 350px;
     }
 
     .matching-cards {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--mobile-spacing-md);
     }
 
-    /* Improve button consistency on mobile */
-    .primary-btn, .secondary-btn, .file-input-label, .game-btn {
-        width: 100%;
-        max-width: 250px;
-        margin: 0 auto;
+    /* Game card improvements */
+    .game-card {
+        padding: var(--mobile-spacing-md);
+    }
+
+    .game-btn {
+        min-height: var(--mobile-button-height);
+        font-size: var(--mobile-font-size-md);
+    }
+
+    /* Header improvements */
+    header {
+        padding-bottom: var(--mobile-spacing-md);
+        margin-bottom: var(--mobile-spacing-lg);
+    }
+
+    .theme-toggle button {
+        width: 44px;
+        height: 44px;
+        font-size: var(--mobile-font-size-xl);
     }
 }
 
 @media (max-width: 480px) {
+    /* Even larger font sizes for very small screens */
+    :root {
+        --mobile-font-size-xs: 1rem;
+        --mobile-font-size-sm: 1.125rem;
+        --mobile-font-size-md: 1.25rem;
+        --mobile-font-size-lg: 1.5rem;
+        --mobile-font-size-xl: 1.875rem;
+        --mobile-font-size-xxl: 2.5rem;
+    }
+
+    /* Increased spacing for very small screens */
+    .app-container {
+        padding: var(--spacing-md);
+    }
+
+    /* Stack flashcard controls vertically */
     .flashcard-controls {
         flex-direction: column;
+        gap: var(--mobile-spacing-md);
+    }
+
+    .flashcard-controls button {
+        width: 100%;
+        min-height: var(--mobile-button-height);
+    }
+
+    /* Single column for matching cards on very small screens */
+    .matching-cards {
+        grid-template-columns: 1fr;
+        gap: var(--mobile-spacing-md);
+    }
+
+    /* Vocabulary actions - stack vertically on very small screens */
+    .vocabulary-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .vocabulary-actions .button-separator {
+        display: none;
+    }
+
+    /* Quiz options - ensure they're touch-friendly */
+    .quiz-option {
+        padding: var(--mobile-spacing-md);
+        margin-bottom: var(--spacing-md);
+        font-size: var(--mobile-font-size-md);
+    }
+
+    /* Modal adjustments for very small screens */
+    .modal-content {
+        margin: 2%;
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius-md);
+    }
+
+    /* Game cards - single column */
+    .games-container {
+        grid-template-columns: 1fr;
+        gap: var(--mobile-spacing-md);
+    }
+
+    /* Search and sort - more spacing */
+    .search-filter {
+        gap: var(--mobile-spacing-lg);
+    }
+
+    .sort-container {
+        flex-direction: column;
+        align-items: stretch;
         gap: var(--spacing-sm);
     }
 
-    .matching-cards {
-        grid-template-columns: repeat(2, 1fr);
+    .sort-label {
+        text-align: left;
+    }
+
+    /* Progress bar adjustments */
+    .word-progress {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-sm);
+    }
+
+    .progress-label {
+        min-width: auto;
+        text-align: left;
     }
 }
