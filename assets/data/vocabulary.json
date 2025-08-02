@@ -1,0 +1,1869 @@
+{
+  "vocabulary": [
+    {
+      "dutch": "huis",
+      "russian": "дом",
+      "english": "house"
+    },
+    {
+      "dutch": "water",
+      "russian": "вода",
+      "english": "water"
+    },
+    {
+      "dutch": "eten",
+      "russian": "еда",
+      "english": "food"
+    },
+    {
+      "dutch": "dag",
+      "russian": "день",
+      "english": "day"
+    },
+    {
+      "dutch": "nacht",
+      "russian": "ночь",
+      "english": "night"
+    },
+    {
+      "dutch": "man",
+      "russian": "мужчина",
+      "english": "man"
+    },
+    {
+      "dutch": "vrouw",
+      "russian": "женщина",
+      "english": "woman"
+    },
+    {
+      "dutch": "kind",
+      "russian": "ребёнок",
+      "english": "child"
+    },
+    {
+      "dutch": "auto",
+      "russian": "машина",
+      "english": "car"
+    },
+    {
+      "dutch": "fiets",
+      "russian": "велосипед",
+      "english": "bicycle"
+    },
+    {
+      "dutch": "boek",
+      "russian": "книга",
+      "english": "book"
+    },
+    {
+      "dutch": "school",
+      "russian": "школа",
+      "english": "school"
+    },
+    {
+      "dutch": "werk",
+      "russian": "работа",
+      "english": "work"
+    },
+    {
+      "dutch": "geld",
+      "russian": "деньги",
+      "english": "money"
+    },
+    {
+      "dutch": "tijd",
+      "russian": "время",
+      "english": "time"
+    },
+    {
+      "dutch": "jaar",
+      "russian": "год",
+      "english": "year"
+    },
+    {
+      "dutch": "maand",
+      "russian": "месяц",
+      "english": "month"
+    },
+    {
+      "dutch": "week",
+      "russian": "неделя",
+      "english": "week"
+    },
+    {
+      "dutch": "deur",
+      "russian": "дверь",
+      "english": "door"
+    },
+    {
+      "dutch": "raam",
+      "russian": "окно",
+      "english": "window"
+    },
+    {
+      "dutch": "tafel",
+      "russian": "стол",
+      "english": "table"
+    },
+    {
+      "dutch": "stoel",
+      "russian": "стул",
+      "english": "chair"
+    },
+    {
+      "dutch": "bed",
+      "russian": "кровать",
+      "english": "bed"
+    },
+    {
+      "dutch": "kamer",
+      "russian": "комната",
+      "english": "room"
+    },
+    {
+      "dutch": "keuken",
+      "russian": "кухня",
+      "english": "kitchen"
+    },
+    {
+      "dutch": "badkamer",
+      "russian": "ванная",
+      "english": "bathroom"
+    },
+    {
+      "dutch": "tuin",
+      "russian": "сад",
+      "english": "garden"
+    },
+    {
+      "dutch": "straat",
+      "russian": "улица",
+      "english": "street"
+    },
+    {
+      "dutch": "stad",
+      "russian": "город",
+      "english": "city"
+    },
+    {
+      "dutch": "land",
+      "russian": "страна",
+      "english": "country"
+    },
+    {
+      "dutch": "zee",
+      "russian": "море",
+      "english": "sea"
+    },
+    {
+      "dutch": "lucht",
+      "russian": "воздух",
+      "english": "air"
+    },
+    {
+      "dutch": "vuur",
+      "russian": "огонь",
+      "english": "fire"
+    },
+    {
+      "dutch": "aarde",
+      "russian": "земля",
+      "english": "earth"
+    },
+    {
+      "dutch": "zon",
+      "russian": "солнце",
+      "english": "sun"
+    },
+    {
+      "dutch": "maan",
+      "russian": "луна",
+      "english": "moon"
+    },
+    {
+      "dutch": "ster",
+      "russian": "звезда",
+      "english": "star"
+    },
+    {
+      "dutch": "boom",
+      "russian": "дерево",
+      "english": "tree"
+    },
+    {
+      "dutch": "bloem",
+      "russian": "цветок",
+      "english": "flower"
+    },
+    {
+      "dutch": "gras",
+      "russian": "трава",
+      "english": "grass"
+    },
+    {
+      "dutch": "dier",
+      "russian": "животное",
+      "english": "animal"
+    },
+    {
+      "dutch": "hond",
+      "russian": "собака",
+      "english": "dog"
+    },
+    {
+      "dutch": "kat",
+      "russian": "кот",
+      "english": "cat"
+    },
+    {
+      "dutch": "vogel",
+      "russian": "птица",
+      "english": "bird"
+    },
+    {
+      "dutch": "vis",
+      "russian": "рыба",
+      "english": "fish"
+    },
+    {
+      "dutch": "paard",
+      "russian": "лошадь",
+      "english": "horse"
+    },
+    {
+      "dutch": "koe",
+      "russian": "корова",
+      "english": "cow"
+    },
+    {
+      "dutch": "varken",
+      "russian": "свинья",
+      "english": "pig"
+    },
+    {
+      "dutch": "schaap",
+      "russian": "овца",
+      "english": "sheep"
+    },
+    {
+      "dutch": "kip",
+      "russian": "курица",
+      "english": "chicken"
+    },
+    {
+      "dutch": "ei",
+      "russian": "яйцо",
+      "english": "egg"
+    },
+    {
+      "dutch": "melk",
+      "russian": "молоко",
+      "english": "milk"
+    },
+    {
+      "dutch": "brood",
+      "russian": "хлеб",
+      "english": "bread"
+    },
+    {
+      "dutch": "kaas",
+      "russian": "сыр",
+      "english": "cheese"
+    },
+    {
+      "dutch": "vlees",
+      "russian": "мясо",
+      "english": "meat"
+    },
+    {
+      "dutch": "groente",
+      "russian": "овощи",
+      "english": "vegetables"
+    },
+    {
+      "dutch": "fruit",
+      "russian": "фрукты",
+      "english": "fruit"
+    },
+    {
+      "dutch": "appel",
+      "russian": "яблоко",
+      "english": "apple"
+    },
+    {
+      "dutch": "banaan",
+      "russian": "банан",
+      "english": "banana"
+    },
+    {
+      "dutch": "sinaasappel",
+      "russian": "апельсин",
+      "english": "orange"
+    },
+    {
+      "dutch": "aardappel",
+      "russian": "картофель",
+      "english": "potato"
+    },
+    {
+      "dutch": "wortel",
+      "russian": "морковь",
+      "english": "carrot"
+    },
+    {
+      "dutch": "ui",
+      "russian": "лук",
+      "english": "onion"
+    },
+    {
+      "dutch": "tomaat",
+      "russian": "помидор",
+      "english": "tomato"
+    },
+    {
+      "dutch": "koffie",
+      "russian": "кофе",
+      "english": "coffee"
+    },
+    {
+      "dutch": "thee",
+      "russian": "чай",
+      "english": "tea"
+    },
+    {
+      "dutch": "bier",
+      "russian": "пиво",
+      "english": "beer"
+    },
+    {
+      "dutch": "wijn",
+      "russian": "вино",
+      "english": "wine"
+    },
+    {
+      "dutch": "kleur",
+      "russian": "цвет",
+      "english": "color"
+    },
+    {
+      "dutch": "rood",
+      "russian": "красный",
+      "english": "red"
+    },
+    {
+      "dutch": "blauw",
+      "russian": "синий",
+      "english": "blue"
+    },
+    {
+      "dutch": "groen",
+      "russian": "зелёный",
+      "english": "green"
+    },
+    {
+      "dutch": "geel",
+      "russian": "жёлтый",
+      "english": "yellow"
+    },
+    {
+      "dutch": "zwart",
+      "russian": "чёрный",
+      "english": "black"
+    },
+    {
+      "dutch": "wit",
+      "russian": "белый",
+      "english": "white"
+    },
+    {
+      "dutch": "groot",
+      "russian": "большой",
+      "english": "big"
+    },
+    {
+      "dutch": "klein",
+      "russian": "маленький",
+      "english": "small"
+    },
+    {
+      "dutch": "lang",
+      "russian": "длинный",
+      "english": "long"
+    },
+    {
+      "dutch": "kort",
+      "russian": "короткий",
+      "english": "short"
+    },
+    {
+      "dutch": "hoog",
+      "russian": "высокий",
+      "english": "high"
+    },
+    {
+      "dutch": "laag",
+      "russian": "низкий",
+      "english": "low"
+    },
+    {
+      "dutch": "nieuw",
+      "russian": "новый",
+      "english": "new"
+    },
+    {
+      "dutch": "oud",
+      "russian": "старый",
+      "english": "old"
+    },
+    {
+      "dutch": "goed",
+      "russian": "хороший",
+      "english": "good"
+    },
+    {
+      "dutch": "slecht",
+      "russian": "плохой",
+      "english": "bad"
+    },
+    {
+      "dutch": "mooi",
+      "russian": "красивый",
+      "english": "beautiful"
+    },
+    {
+      "dutch": "lelijk",
+      "russian": "уродливый",
+      "english": "ugly"
+    },
+    {
+      "dutch": "warm",
+      "russian": "тёплый",
+      "english": "warm"
+    },
+    {
+      "dutch": "koud",
+      "russian": "холодный",
+      "english": "cold"
+    },
+    {
+      "dutch": "een",
+      "russian": "один",
+      "english": "one"
+    },
+    {
+      "dutch": "twee",
+      "russian": "два",
+      "english": "two"
+    },
+    {
+      "dutch": "drie",
+      "russian": "три",
+      "english": "three"
+    },
+    {
+      "dutch": "vier",
+      "russian": "четыре",
+      "english": "four"
+    },
+    {
+      "dutch": "vijf",
+      "russian": "пять",
+      "english": "five"
+    },
+    {
+      "dutch": "zes",
+      "russian": "шесть",
+      "english": "six"
+    },
+    {
+      "dutch": "zeven",
+      "russian": "семь",
+      "english": "seven"
+    },
+    {
+      "dutch": "acht",
+      "russian": "восемь",
+      "english": "eight"
+    },
+    {
+      "dutch": "negen",
+      "russian": "девять",
+      "english": "nine"
+    },
+    {
+      "dutch": "tien",
+      "russian": "десять",
+      "english": "ten"
+    },
+    {
+      "dutch": "elf",
+      "russian": "одиннадцать",
+      "english": "eleven"
+    },
+    {
+      "dutch": "twaalf",
+      "russian": "двенадцать",
+      "english": "twelve"
+    },
+    {
+      "dutch": "dertien",
+      "russian": "тринадцать",
+      "english": "thirteen"
+    },
+    {
+      "dutch": "veertien",
+      "russian": "четырнадцать",
+      "english": "fourteen"
+    },
+    {
+      "dutch": "vijftien",
+      "russian": "пятнадцать",
+      "english": "fifteen"
+    },
+    {
+      "dutch": "zestien",
+      "russian": "шестнадцать",
+      "english": "sixteen"
+    },
+    {
+      "dutch": "zeventien",
+      "russian": "семнадцать",
+      "english": "seventeen"
+    },
+    {
+      "dutch": "achttien",
+      "russian": "восемнадцать",
+      "english": "eighteen"
+    },
+    {
+      "dutch": "negentien",
+      "russian": "девятнадцать",
+      "english": "nineteen"
+    },
+    {
+      "dutch": "twintig",
+      "russian": "двадцать",
+      "english": "twenty"
+    },
+    {
+      "dutch": "zijn",
+      "russian": "быть",
+      "english": "to be"
+    },
+    {
+      "dutch": "hebben",
+      "russian": "иметь",
+      "english": "to have"
+    },
+    {
+      "dutch": "doen",
+      "russian": "делать",
+      "english": "to do"
+    },
+    {
+      "dutch": "gaan",
+      "russian": "идти",
+      "english": "to go"
+    },
+    {
+      "dutch": "komen",
+      "russian": "приходить",
+      "english": "to come"
+    },
+    {
+      "dutch": "zien",
+      "russian": "видеть",
+      "english": "to see"
+    },
+    {
+      "dutch": "horen",
+      "russian": "слышать",
+      "english": "to hear"
+    },
+    {
+      "dutch": "spreken",
+      "russian": "говорить",
+      "english": "to speak"
+    },
+    {
+      "dutch": "zeggen",
+      "russian": "сказать",
+      "english": "to say"
+    },
+    {
+      "dutch": "denken",
+      "russian": "думать",
+      "english": "to think"
+    },
+    {
+      "dutch": "weten",
+      "russian": "знать",
+      "english": "to know"
+    },
+    {
+      "dutch": "leren",
+      "russian": "учиться",
+      "english": "to learn"
+    },
+    {
+      "dutch": "lezen",
+      "russian": "читать",
+      "english": "to read"
+    },
+    {
+      "dutch": "schrijven",
+      "russian": "писать",
+      "english": "to write"
+    },
+    {
+      "dutch": "kopen",
+      "russian": "покупать",
+      "english": "to buy"
+    },
+    {
+      "dutch": "verkopen",
+      "russian": "продавать",
+      "english": "to sell"
+    },
+    {
+      "dutch": "geven",
+      "russian": "давать",
+      "english": "to give"
+    },
+    {
+      "dutch": "nemen",
+      "russian": "брать",
+      "english": "to take"
+    },
+    {
+      "dutch": "brengen",
+      "russian": "приносить",
+      "english": "to bring"
+    },
+    {
+      "dutch": "halen",
+      "russian": "получать",
+      "english": "to get"
+    },
+    {
+      "dutch": "maken",
+      "russian": "делать",
+      "english": "to make"
+    },
+    {
+      "dutch": "gebruiken",
+      "russian": "использовать",
+      "english": "to use"
+    },
+    {
+      "dutch": "helpen",
+      "russian": "помогать",
+      "english": "to help"
+    },
+    {
+      "dutch": "werken",
+      "russian": "работать",
+      "english": "to work"
+    },
+    {
+      "dutch": "spelen",
+      "russian": "играть",
+      "english": "to play"
+    },
+    {
+      "dutch": "slapen",
+      "russian": "спать",
+      "english": "to sleep"
+    },
+    {
+      "dutch": "eten",
+      "russian": "есть",
+      "english": "to eat"
+    },
+    {
+      "dutch": "drinken",
+      "russian": "пить",
+      "english": "to drink"
+    },
+    {
+      "dutch": "lopen",
+      "russian": "ходить",
+      "english": "to walk"
+    },
+    {
+      "dutch": "rennen",
+      "russian": "бегать",
+      "english": "to run"
+    },
+    {
+      "dutch": "rijden",
+      "russian": "ехать",
+      "english": "to drive"
+    },
+    {
+      "dutch": "hoofd",
+      "russian": "голова",
+      "english": "head"
+    },
+    {
+      "dutch": "haar",
+      "russian": "волосы",
+      "english": "hair"
+    },
+    {
+      "dutch": "oog",
+      "russian": "глаз",
+      "english": "eye"
+    },
+    {
+      "dutch": "neus",
+      "russian": "нос",
+      "english": "nose"
+    },
+    {
+      "dutch": "mond",
+      "russian": "рот",
+      "english": "mouth"
+    },
+    {
+      "dutch": "tand",
+      "russian": "зуб",
+      "english": "tooth"
+    },
+    {
+      "dutch": "oor",
+      "russian": "ухо",
+      "english": "ear"
+    },
+    {
+      "dutch": "hals",
+      "russian": "шея",
+      "english": "neck"
+    },
+    {
+      "dutch": "schouder",
+      "russian": "плечо",
+      "english": "shoulder"
+    },
+    {
+      "dutch": "arm",
+      "russian": "рука",
+      "english": "arm"
+    },
+    {
+      "dutch": "hand",
+      "russian": "кисть",
+      "english": "hand"
+    },
+    {
+      "dutch": "vinger",
+      "russian": "палец",
+      "english": "finger"
+    },
+    {
+      "dutch": "borst",
+      "russian": "грудь",
+      "english": "chest"
+    },
+    {
+      "dutch": "buik",
+      "russian": "живот",
+      "english": "belly"
+    },
+    {
+      "dutch": "rug",
+      "russian": "спина",
+      "english": "back"
+    },
+    {
+      "dutch": "been",
+      "russian": "нога",
+      "english": "leg"
+    },
+    {
+      "dutch": "voet",
+      "russian": "стопа",
+      "english": "foot"
+    },
+    {
+      "dutch": "hart",
+      "russian": "сердце",
+      "english": "heart"
+    },
+    {
+      "dutch": "vader",
+      "russian": "отец",
+      "english": "father"
+    },
+    {
+      "dutch": "moeder",
+      "russian": "мать",
+      "english": "mother"
+    },
+    {
+      "dutch": "zoon",
+      "russian": "сын",
+      "english": "son"
+    },
+    {
+      "dutch": "dochter",
+      "russian": "дочь",
+      "english": "daughter"
+    },
+    {
+      "dutch": "broer",
+      "russian": "брат",
+      "english": "brother"
+    },
+    {
+      "dutch": "zus",
+      "russian": "сестра",
+      "english": "sister"
+    },
+    {
+      "dutch": "opa",
+      "russian": "дедушка",
+      "english": "grandfather"
+    },
+    {
+      "dutch": "oma",
+      "russian": "бабушка",
+      "english": "grandmother"
+    },
+    {
+      "dutch": "oom",
+      "russian": "дядя",
+      "english": "uncle"
+    },
+    {
+      "dutch": "tante",
+      "russian": "тётя",
+      "english": "aunt"
+    },
+    {
+      "dutch": "neef",
+      "russian": "племянник",
+      "english": "nephew"
+    },
+    {
+      "dutch": "nicht",
+      "russian": "племянница",
+      "english": "niece"
+    },
+    {
+      "dutch": "vriend",
+      "russian": "друг",
+      "english": "friend"
+    },
+    {
+      "dutch": "leraar",
+      "russian": "учитель",
+      "english": "teacher"
+    },
+    {
+      "dutch": "dokter",
+      "russian": "врач",
+      "english": "doctor"
+    },
+    {
+      "dutch": "verpleegster",
+      "russian": "медсестра",
+      "english": "nurse"
+    },
+    {
+      "dutch": "politie",
+      "russian": "полиция",
+      "english": "police"
+    },
+    {
+      "dutch": "brandweer",
+      "russian": "пожарная",
+      "english": "fire department"
+    },
+    {
+      "dutch": "kok",
+      "russian": "повар",
+      "english": "cook"
+    },
+    {
+      "dutch": "bakker",
+      "russian": "пекарь",
+      "english": "baker"
+    },
+    {
+      "dutch": "verkoper",
+      "russian": "продавец",
+      "english": "seller"
+    },
+    {
+      "dutch": "chauffeur",
+      "russian": "водитель",
+      "english": "driver"
+    },
+    {
+      "dutch": "kleding",
+      "russian": "одежда",
+      "english": "clothing"
+    },
+    {
+      "dutch": "shirt",
+      "russian": "рубашка",
+      "english": "shirt"
+    },
+    {
+      "dutch": "broek",
+      "russian": "брюки",
+      "english": "pants"
+    },
+    {
+      "dutch": "jurk",
+      "russian": "платье",
+      "english": "dress"
+    },
+    {
+      "dutch": "rok",
+      "russian": "юбка",
+      "english": "skirt"
+    },
+    {
+      "dutch": "jas",
+      "russian": "куртка",
+      "english": "jacket"
+    },
+    {
+      "dutch": "schoenen",
+      "russian": "обувь",
+      "english": "shoes"
+    },
+    {
+      "dutch": "sokken",
+      "russian": "носки",
+      "english": "socks"
+    },
+    {
+      "dutch": "hoed",
+      "russian": "шляпа",
+      "english": "hat"
+    },
+    {
+      "dutch": "handschoenen",
+      "russian": "перчатки",
+      "english": "gloves"
+    },
+    {
+      "dutch": "weer",
+      "russian": "погода",
+      "english": "weather"
+    },
+    {
+      "dutch": "regen",
+      "russian": "дождь",
+      "english": "rain"
+    },
+    {
+      "dutch": "sneeuw",
+      "russian": "снег",
+      "english": "snow"
+    },
+    {
+      "dutch": "wind",
+      "russian": "ветер",
+      "english": "wind"
+    },
+    {
+      "dutch": "wolken",
+      "russian": "облака",
+      "english": "clouds"
+    },
+    {
+      "dutch": "storm",
+      "russian": "шторм",
+      "english": "storm"
+    },
+    {
+      "dutch": "trein",
+      "russian": "поезд",
+      "english": "train"
+    },
+    {
+      "dutch": "bus",
+      "russian": "автобус",
+      "english": "bus"
+    },
+    {
+      "dutch": "vliegtuig",
+      "russian": "самолёт",
+      "english": "airplane"
+    },
+    {
+      "dutch": "boot",
+      "russian": "лодка",
+      "english": "boat"
+    },
+    {
+      "dutch": "motor",
+      "russian": "мотоцикл",
+      "english": "motorcycle"
+    },
+    {
+      "dutch": "station",
+      "russian": "станция",
+      "english": "station"
+    },
+    {
+      "dutch": "luchthaven",
+      "russian": "аэропорт",
+      "english": "airport"
+    },
+    {
+      "dutch": "haven",
+      "russian": "порт",
+      "english": "harbor"
+    },
+    {
+      "dutch": "winkel",
+      "russian": "магазин",
+      "english": "shop"
+    },
+    {
+      "dutch": "markt",
+      "russian": "рынок",
+      "english": "market"
+    },
+    {
+      "dutch": "restaurant",
+      "russian": "ресторан",
+      "english": "restaurant"
+    },
+    {
+      "dutch": "café",
+      "russian": "кафе",
+      "english": "café"
+    },
+    {
+      "dutch": "hotel",
+      "russian": "отель",
+      "english": "hotel"
+    },
+    {
+      "dutch": "ziekenhuis",
+      "russian": "больница",
+      "english": "hospital"
+    },
+    {
+      "dutch": "apotheek",
+      "russian": "аптека",
+      "english": "pharmacy"
+    },
+    {
+      "dutch": "bank",
+      "russian": "банк",
+      "english": "bank"
+    },
+    {
+      "dutch": "postkantoor",
+      "russian": "почта",
+      "english": "post office"
+    },
+    {
+      "dutch": "bibliotheek",
+      "russian": "библиотека",
+      "english": "library"
+    },
+    {
+      "dutch": "museum",
+      "russian": "музей",
+      "english": "museum"
+    },
+    {
+      "dutch": "theater",
+      "russian": "театр",
+      "english": "theater"
+    },
+    {
+      "dutch": "bioscoop",
+      "russian": "кинотеатр",
+      "english": "cinema"
+    },
+    {
+      "dutch": "park",
+      "russian": "парк",
+      "english": "park"
+    },
+    {
+      "dutch": "strand",
+      "russian": "пляж",
+      "english": "beach"
+    },
+    {
+      "dutch": "berg",
+      "russian": "гора",
+      "english": "mountain"
+    },
+    {
+      "dutch": "rivier",
+      "russian": "река",
+      "english": "river"
+    },
+    {
+      "dutch": "meer",
+      "russian": "озеро",
+      "english": "lake"
+    },
+    {
+      "dutch": "bos",
+      "russian": "лес",
+      "english": "forest"
+    },
+    {
+      "dutch": "veld",
+      "russian": "поле",
+      "english": "field"
+    },
+    {
+      "dutch": "brug",
+      "russian": "мост",
+      "english": "bridge"
+    },
+    {
+      "dutch": "weg",
+      "russian": "дорога",
+      "english": "road"
+    },
+    {
+      "dutch": "pad",
+      "russian": "тропа",
+      "english": "path"
+    },
+    {
+      "dutch": "hoek",
+      "russian": "угол",
+      "english": "corner"
+    },
+    {
+      "dutch": "centrum",
+      "russian": "центр",
+      "english": "center"
+    },
+    {
+      "dutch": "noord",
+      "russian": "север",
+      "english": "north"
+    },
+    {
+      "dutch": "zuid",
+      "russian": "юг",
+      "english": "south"
+    },
+    {
+      "dutch": "oost",
+      "russian": "восток",
+      "english": "east"
+    },
+    {
+      "dutch": "west",
+      "russian": "запад",
+      "english": "west"
+    },
+    {
+      "dutch": "links",
+      "russian": "слева",
+      "english": "left"
+    },
+    {
+      "dutch": "rechts",
+      "russian": "справа",
+      "english": "right"
+    },
+    {
+      "dutch": "voor",
+      "russian": "перед",
+      "english": "in front of"
+    },
+    {
+      "dutch": "achter",
+      "russian": "за",
+      "english": "behind"
+    },
+    {
+      "dutch": "naast",
+      "russian": "рядом",
+      "english": "next to"
+    },
+    {
+      "dutch": "tussen",
+      "russian": "между",
+      "english": "between"
+    },
+    {
+      "dutch": "boven",
+      "russian": "над",
+      "english": "above"
+    },
+    {
+      "dutch": "onder",
+      "russian": "под",
+      "english": "under"
+    },
+    {
+      "dutch": "binnen",
+      "russian": "внутри",
+      "english": "inside"
+    },
+    {
+      "dutch": "buiten",
+      "russian": "снаружи",
+      "english": "outside"
+    },
+    {
+      "dutch": "hier",
+      "russian": "здесь",
+      "english": "here"
+    },
+    {
+      "dutch": "daar",
+      "russian": "там",
+      "english": "there"
+    },
+    {
+      "dutch": "waar",
+      "russian": "где",
+      "english": "where"
+    },
+    {
+      "dutch": "wanneer",
+      "russian": "когда",
+      "english": "when"
+    },
+    {
+      "dutch": "waarom",
+      "russian": "почему",
+      "english": "why"
+    },
+    {
+      "dutch": "wat",
+      "russian": "что",
+      "english": "what"
+    },
+    {
+      "dutch": "wie",
+      "russian": "кто",
+      "english": "who"
+    },
+    {
+      "dutch": "hoe",
+      "russian": "как",
+      "english": "how"
+    },
+    {
+      "dutch": "hoeveel",
+      "russian": "сколько",
+      "english": "how much"
+    },
+    {
+      "dutch": "welke",
+      "russian": "какой",
+      "english": "which"
+    },
+    {
+      "dutch": "ja",
+      "russian": "да",
+      "english": "yes"
+    },
+    {
+      "dutch": "nee",
+      "russian": "нет",
+      "english": "no"
+    },
+    {
+      "dutch": "misschien",
+      "russian": "может быть",
+      "english": "maybe"
+    },
+    {
+      "dutch": "altijd",
+      "russian": "всегда",
+      "english": "always"
+    },
+    {
+      "dutch": "nooit",
+      "russian": "никогда",
+      "english": "never"
+    },
+    {
+      "dutch": "soms",
+      "russian": "иногда",
+      "english": "sometimes"
+    },
+    {
+      "dutch": "vaak",
+      "russian": "часто",
+      "english": "often"
+    },
+    {
+      "dutch": "nu",
+      "russian": "сейчас",
+      "english": "now"
+    },
+    {
+      "dutch": "later",
+      "russian": "позже",
+      "english": "later"
+    },
+    {
+      "dutch": "vroeger",
+      "russian": "раньше",
+      "english": "earlier"
+    },
+    {
+      "dutch": "vandaag",
+      "russian": "сегодня",
+      "english": "today"
+    },
+    {
+      "dutch": "gisteren",
+      "russian": "вчера",
+      "english": "yesterday"
+    },
+    {
+      "dutch": "morgen",
+      "russian": "завтра",
+      "english": "tomorrow"
+    },
+    {
+      "dutch": "ochtend",
+      "russian": "утро",
+      "english": "morning"
+    },
+    {
+      "dutch": "middag",
+      "russian": "день",
+      "english": "afternoon"
+    },
+    {
+      "dutch": "avond",
+      "russian": "вечер",
+      "english": "evening"
+    },
+    {
+      "dutch": "maandag",
+      "russian": "понедельник",
+      "english": "monday"
+    },
+    {
+      "dutch": "dinsdag",
+      "russian": "вторник",
+      "english": "tuesday"
+    },
+    {
+      "dutch": "woensdag",
+      "russian": "среда",
+      "english": "wednesday"
+    },
+    {
+      "dutch": "donderdag",
+      "russian": "четверг",
+      "english": "thursday"
+    },
+    {
+      "dutch": "vrijdag",
+      "russian": "пятница",
+      "english": "friday"
+    },
+    {
+      "dutch": "zaterdag",
+      "russian": "суббота",
+      "english": "saturday"
+    },
+    {
+      "dutch": "zondag",
+      "russian": "воскресенье",
+      "english": "sunday"
+    },
+    {
+      "dutch": "januari",
+      "russian": "январь",
+      "english": "january"
+    },
+    {
+      "dutch": "februari",
+      "russian": "февраль",
+      "english": "february"
+    },
+    {
+      "dutch": "maart",
+      "russian": "март",
+      "english": "march"
+    },
+    {
+      "dutch": "april",
+      "russian": "апрель",
+      "english": "april"
+    },
+    {
+      "dutch": "mei",
+      "russian": "май",
+      "english": "may"
+    },
+    {
+      "dutch": "juni",
+      "russian": "июнь",
+      "english": "june"
+    },
+    {
+      "dutch": "juli",
+      "russian": "июль",
+      "english": "july"
+    },
+    {
+      "dutch": "augustus",
+      "russian": "август",
+      "english": "august"
+    },
+    {
+      "dutch": "september",
+      "russian": "сентябрь",
+      "english": "september"
+    },
+    {
+      "dutch": "oktober",
+      "russian": "октябрь",
+      "english": "october"
+    },
+    {
+      "dutch": "november",
+      "russian": "ноябрь",
+      "english": "november"
+    },
+    {
+      "dutch": "december",
+      "russian": "декабрь",
+      "english": "december"
+    },
+    {
+      "dutch": "lente",
+      "russian": "весна",
+      "english": "spring"
+    },
+    {
+      "dutch": "zomer",
+      "russian": "лето",
+      "english": "summer"
+    },
+    {
+      "dutch": "herfst",
+      "russian": "осень",
+      "english": "autumn"
+    },
+    {
+      "dutch": "winter",
+      "russian": "зима",
+      "english": "winter"
+    },
+    {
+      "dutch": "dertig",
+      "russian": "тридцать",
+      "english": "thirty"
+    },
+    {
+      "dutch": "veertig",
+      "russian": "сорок",
+      "english": "forty"
+    },
+    {
+      "dutch": "vijftig",
+      "russian": "пятьдесят",
+      "english": "fifty"
+    },
+    {
+      "dutch": "zestig",
+      "russian": "шестьдесят",
+      "english": "sixty"
+    },
+    {
+      "dutch": "zeventig",
+      "russian": "семьдесят",
+      "english": "seventy"
+    },
+    {
+      "dutch": "tachtig",
+      "russian": "восемьдесят",
+      "english": "eighty"
+    },
+    {
+      "dutch": "negentig",
+      "russian": "девяносто",
+      "english": "ninety"
+    },
+    {
+      "dutch": "honderd",
+      "russian": "сто",
+      "english": "hundred"
+    },
+    {
+      "dutch": "duizend",
+      "russian": "тысяча",
+      "english": "thousand"
+    },
+    {
+      "dutch": "miljoen",
+      "russian": "миллион",
+      "english": "million"
+    },
+    {
+      "dutch": "computer",
+      "russian": "компьютер",
+      "english": "computer"
+    },
+    {
+      "dutch": "telefoon",
+      "russian": "телефон",
+      "english": "phone"
+    },
+    {
+      "dutch": "internet",
+      "russian": "интернет",
+      "english": "internet"
+    },
+    {
+      "dutch": "email",
+      "russian": "электронная почта",
+      "english": "email"
+    },
+    {
+      "dutch": "website",
+      "russian": "веб-сайт",
+      "english": "website"
+    },
+    {
+      "dutch": "televisie",
+      "russian": "телевизор",
+      "english": "television"
+    },
+    {
+      "dutch": "radio",
+      "russian": "радио",
+      "english": "radio"
+    },
+    {
+      "dutch": "muziek",
+      "russian": "музыка",
+      "english": "music"
+    },
+    {
+      "dutch": "film",
+      "russian": "фильм",
+      "english": "movie"
+    },
+    {
+      "dutch": "foto",
+      "russian": "фотография",
+      "english": "photo"
+    },
+    {
+      "dutch": "camera",
+      "russian": "камера",
+      "english": "camera"
+    },
+    {
+      "dutch": "sport",
+      "russian": "спорт",
+      "english": "sport"
+    },
+    {
+      "dutch": "voetbal",
+      "russian": "футбол",
+      "english": "football"
+    },
+    {
+      "dutch": "tennis",
+      "russian": "теннис",
+      "english": "tennis"
+    },
+    {
+      "dutch": "zwemmen",
+      "russian": "плавание",
+      "english": "swimming"
+    },
+    {
+      "dutch": "fietsen",
+      "russian": "велоспорт",
+      "english": "cycling"
+    },
+    {
+      "dutch": "hardlopen",
+      "russian": "бег",
+      "english": "running"
+    },
+    {
+      "dutch": "dansen",
+      "russian": "танцы",
+      "english": "dancing"
+    },
+    {
+      "dutch": "zingen",
+      "russian": "пение",
+      "english": "singing"
+    },
+    {
+      "dutch": "tekenen",
+      "russian": "рисование",
+      "english": "drawing"
+    },
+    {
+      "dutch": "schilderen",
+      "russian": "живопись",
+      "english": "painting"
+    },
+    {
+      "dutch": "koken",
+      "russian": "готовка",
+      "english": "cooking"
+    },
+    {
+      "dutch": "tuinieren",
+      "russian": "садоводство",
+      "english": "gardening"
+    },
+    {
+      "dutch": "reizen",
+      "russian": "путешествие",
+      "english": "traveling"
+    },
+    {
+      "dutch": "vakantie",
+      "russian": "отпуск",
+      "english": "vacation"
+    },
+    {
+      "dutch": "feest",
+      "russian": "праздник",
+      "english": "party"
+    },
+    {
+      "dutch": "verjaardag",
+      "russian": "день рождения",
+      "english": "birthday"
+    },
+    {
+      "dutch": "cadeau",
+      "russian": "подарок",
+      "english": "gift"
+    },
+    {
+      "dutch": "bloemen",
+      "russian": "цветы",
+      "english": "flowers"
+    },
+    {
+      "dutch": "liefde",
+      "russian": "любовь",
+      "english": "love"
+    },
+    {
+      "dutch": "geluk",
+      "russian": "счастье",
+      "english": "happiness"
+    },
+    {
+      "dutch": "verdriet",
+      "russian": "грусть",
+      "english": "sadness"
+    },
+    {
+      "dutch": "angst",
+      "russian": "страх",
+      "english": "fear"
+    },
+    {
+      "dutch": "boosheid",
+      "russian": "злость",
+      "english": "anger"
+    },
+    {
+      "dutch": "vreugde",
+      "russian": "радость",
+      "english": "joy"
+    },
+    {
+      "dutch": "hoop",
+      "russian": "надежда",
+      "english": "hope"
+    },
+    {
+      "dutch": "vrede",
+      "russian": "мир",
+      "english": "peace"
+    },
+    {
+      "dutch": "oorlog",
+      "russian": "война",
+      "english": "war"
+    },
+    {
+      "dutch": "gezondheid",
+      "russian": "здоровье",
+      "english": "health"
+    },
+    {
+      "dutch": "ziekte",
+      "russian": "болезнь",
+      "english": "illness"
+    },
+    {
+      "dutch": "pijn",
+      "russian": "боль",
+      "english": "pain"
+    },
+    {
+      "dutch": "medicijn",
+      "russian": "лекарство",
+      "english": "medicine"
+    },
+    {
+      "dutch": "tandarts",
+      "russian": "стоматолог",
+      "english": "dentist"
+    },
+    {
+      "dutch": "ziekenwagen",
+      "russian": "скорая помощь",
+      "english": "ambulance"
+    },
+    {
+      "dutch": "ontbijt",
+      "russian": "завтрак",
+      "english": "breakfast"
+    },
+    {
+      "dutch": "lunch",
+      "russian": "обед",
+      "english": "lunch"
+    },
+    {
+      "dutch": "diner",
+      "russian": "ужин",
+      "english": "dinner"
+    },
+    {
+      "dutch": "snack",
+      "russian": "закуска",
+      "english": "snack"
+    },
+    {
+      "dutch": "soep",
+      "russian": "суп",
+      "english": "soup"
+    },
+    {
+      "dutch": "salade",
+      "russian": "салат",
+      "english": "salad"
+    },
+    {
+      "dutch": "sandwich",
+      "russian": "сэндвич",
+      "english": "sandwich"
+    },
+    {
+      "dutch": "pizza",
+      "russian": "пицца",
+      "english": "pizza"
+    },
+    {
+      "dutch": "pasta",
+      "russian": "паста",
+      "english": "pasta"
+    },
+    {
+      "dutch": "rijst",
+      "russian": "рис",
+      "english": "rice"
+    },
+    {
+      "dutch": "vis",
+      "russian": "рыба",
+      "english": "fish"
+    },
+    {
+      "dutch": "kip",
+      "russian": "курица",
+      "english": "chicken"
+    },
+    {
+      "dutch": "rundvlees",
+      "russian": "говядина",
+      "english": "beef"
+    },
+    {
+      "dutch": "varkensvlees",
+      "russian": "свинина",
+      "english": "pork"
+    },
+    {
+      "dutch": "suiker",
+      "russian": "сахар",
+      "english": "sugar"
+    },
+    {
+      "dutch": "zout",
+      "russian": "соль",
+      "english": "salt"
+    },
+    {
+      "dutch": "peper",
+      "russian": "перец",
+      "english": "pepper"
+    },
+    {
+      "dutch": "olie",
+      "russian": "масло",
+      "english": "oil"
+    },
+    {
+      "dutch": "boter",
+      "russian": "сливочное масло",
+      "english": "butter"
+    },
+    {
+      "dutch": "jam",
+      "russian": "джем",
+      "english": "jam"
+    },
+    {
+      "dutch": "honing",
+      "russian": "мёд",
+      "english": "honey"
+    },
+    {
+      "dutch": "chocolade",
+      "russian": "шоколад",
+      "english": "chocolate"
+    },
+    {
+      "dutch": "koekje",
+      "russian": "печенье",
+      "english": "cookie"
+    },
+    {
+      "dutch": "taart",
+      "russian": "торт",
+      "english": "cake"
+    },
+    {
+      "dutch": "ijs",
+      "russian": "мороженое",
+      "english": "ice cream"
+    },
+    {
+      "dutch": "sap",
+      "russian": "сок",
+      "english": "juice"
+    },
+    {
+      "dutch": "frisdrank",
+      "russian": "газировка",
+      "english": "soft drink"
+    }
+  ]
+}

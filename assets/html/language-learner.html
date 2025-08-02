@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Learner</title>
+    <link rel="stylesheet" href="/assets/css/language-learner.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Language Learner</h1>
+            <div class="theme-toggle">
+                <button id="theme-toggle-btn">🌙</button>
+            </div>
+        </header>
+
+        <main>
+            <section id="add-word-section" class="card">
+                <h2>Add New Word</h2>
+                <div class="form-group">
+                    <label for="word-input">Word:</label>
+                    <input type="text" id="word-input" placeholder="Enter a word to learn">
+                </div>
+
+                <div class="form-group">
+                    <label for="word-language">Word Language:</label>
+                    <select id="word-language">
+                        <option value="dutch">Dutch</option>
+                        <option value="english">English</option>
+                        <option value="french">French</option>
+                        <option value="german">German</option>
+                        <option value="italian">Italian</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <button id="add-word-btn" class="primary-btn">Add Word</button>
+            </section>
+
+            <section id="learning-section" class="card">
+                <h2>Learning Games</h2>
+                <div class="games-container">
+                    <div class="game-card" id="flashcards-game">
+                        <h3>Flashcards</h3>
+                        <p>Practice with flashcards to memorize words</p>
+                        <button class="game-btn">Start</button>
+                    </div>
+                    <div class="game-card" id="matching-game">
+                        <h3>Word Matching</h3>
+                        <p>Match words with their translations</p>
+                        <button class="game-btn">Start</button>
+                    </div>
+                    <div class="game-card" id="quiz-game">
+                        <h3>Quiz</h3>
+                        <p>Test your knowledge with a quiz</p>
+                        <button class="game-btn">Start</button>
+                    </div>
+                    <div class="game-card" id="scramble-game">
+                        <h3>Word Scramble</h3>
+                        <p>Unscramble the letters to find the word</p>
+                        <button class="game-btn">Start</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="vocabulary-section" class="card">
+                <h2>My Vocabulary</h2>
+                <div class="vocabulary-actions">
+                    <button id="import-text-btn" class="secondary-btn small-btn">Add from Text</button>
+                    <button id="import-csv-btn" class="secondary-btn small-btn">Add from CSV</button>
+                    <div class="button-separator"></div>
+                    <label for="import-file" class="file-input-label small-btn">Import JSON</label>
+                    <button id="export-btn" class="secondary-btn small-btn">Export JSON</button>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                    <div class="button-separator"></div>
+                    <button id="reset-btn" class="reset-btn small-btn">Reset</button>
+                </div>
+                <div class="search-filter">
+                    <input type="text" id="search-input" placeholder="Search words...">
+                    <div class="sort-container">
+                        <label for="sort-select" class="sort-label">Sort by:</label>
+                        <select id="sort-select">
+                            <option value="dateAdded">Adding Order</option>
+                            <option value="alphabetical">Alphabetical</option>
+                            <option value="progress">Learning Progress</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="vocabulary-list">
+                    <!-- Words will be added here dynamically -->
+                </div>
+            </section>
+        </main>
+
+        <div id="game-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div id="game-container"></div>
+            </div>
+        </div>
+
+        <!-- CSV Import Modal -->
+        <div id="csv-import-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Add Words from CSV</h2>
+                <p>Paste your CSV data below. The first column should contain words in the selected language.</p>
+
+                <div class="form-group">
+                    <label for="csv-word-language">Word Language:</label>
+                    <select id="csv-word-language">
+                        <option value="dutch">Dutch</option>
+                        <option value="english">English</option>
+                        <option value="french">French</option>
+                        <option value="german">German</option>
+                        <option value="italian">Italian</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="csv-data">CSV Data:</label>
+                    <textarea id="csv-data" rows="10" placeholder="Paste your CSV data here..."></textarea>
+                </div>
+
+                <div id="csv-column-languages" class="form-group">
+                    <label>Translation Languages (for columns 2 and beyond):</label>
+                    <div id="csv-column-languages-container">
+                        <!-- Column language selectors will be added here dynamically -->
+                    </div>
+                </div>
+
+                <button id="process-csv-btn" class="primary-btn">Add Words</button>
+            </div>
+        </div>
+
+        <!-- Text Import Modal -->
+        <div id="text-import-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Add Words from Text</h2>
+                <p>Paste your text below. The system will extract unique words and add them to your vocabulary.</p>
+
+                <div class="form-group">
+                    <label for="text-word-language">Word Language:</label>
+                    <select id="text-word-language">
+                        <option value="dutch">Dutch</option>
+                        <option value="english">English</option>
+                        <option value="french">French</option>
+                        <option value="german">German</option>
+                        <option value="italian">Italian</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="import-text">Text:</label>
+                    <textarea id="import-text" rows="10" placeholder="Paste your text here..."></textarea>
+                </div>
+
+                <button id="process-text-btn" class="primary-btn">Extract Words</button>
+            </div>
+        </div>
+
+        <!-- Edit Word Modal -->
+        <div id="edit-word-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Edit Translations</h2>
+                <p>Manage translations for the word: <strong id="edit-word-text"></strong></p>
+
+                <div id="existing-translations-list">
+                    <!-- Existing translations will be added here dynamically -->
+                </div>
+
+
+                <div id="edit-form-container">
+                    <div class="translation-entry">
+                        <div class="form-group">
+                            <label for="edit-translation-input">Translation:</label>
+                            <input type="text" id="edit-translation-input" class="translation-input" placeholder="Enter translation">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-translation-language">Language:</label>
+                            <select id="edit-translation-language" class="translation-language">
+                                <option value="russian">Russian</option>
+                                <option value="english">English</option>
+                                <option value="dutch">Dutch</option>
+                                <option value="french">French</option>
+                                <option value="german">German</option>
+                                <option value="spanish">Spanish</option>
+                                <option value="italian">Italian</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="edit-modal-buttons">
+                        <button id="save-translation-btn" class="primary-btn">Add Translation</button>
+                        <button id="open-google-translate-btn" class="secondary-btn">Open in Google Translate</button>
+                        <button id="cancel-edit-btn" class="secondary-btn">Done</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Consent Modal -->
+    <div id="cookie-consent-modal" class="modal">
+        <div class="modal-content">
+            <h2>Cookie Consent</h2>
+            <p>This application uses cookies to store your vocabulary words and preferences. By using this application, you consent to the use of cookies.</p>
+            <p>We only use cookies to save your vocabulary data and application settings.</p>
+            <div class="cookie-consent-buttons">
+                <button id="accept-cookies" class="primary-btn">Accept Cookies</button>
+                <button id="decline-cookies" class="secondary-btn">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== UTILITY FUNCTIONS =====
+
+        // Cookie management
+        const CookieManager = {
+            setCookie: function(name, value, days) {
+                const expires = new Date();
+                expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+                document.cookie = `${name}=${JSON.stringify(value)};expires=${expires.toUTCString()};path=/`;
+            },
+
+            getCookie: function(name) {
+                const nameEQ = `${name}=`;
+                const cookies = document.cookie.split(';');
+
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+                    if (cookie.indexOf(nameEQ) === 0) {
+                        try {
+                            return JSON.parse(cookie.substring(nameEQ.length, cookie.length));
+                        } catch (e) {
+                            console.error("Error parsing cookie:", e);
+                            return null;
+                        }
+                    }
+                }
+                return null;
+            },
+
+            deleteCookie: function(name) {
+                document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+            }
+        };
+
+        // Image functionality has been removed
+
+        // ===== PREDEFINED VOCABULARY =====
+
+        const PreDefinedVocabulary = {
+            vocabulary: [],
+            loaded: false,
+
+            // Load predefined vocabulary from JSON file
+            async loadVocabulary() {
+                if (this.loaded) return;
+
+                try {
+                    const response = await fetch('/assets/data/vocabulary.json');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    this.vocabulary = data.vocabulary || [];
+                    this.loaded = true;
+                    console.log(`Loaded ${this.vocabulary.length} predefined words`);
+                } catch (error) {
+                    console.error('Error loading predefined vocabulary:', error);
+                    this.vocabulary = [];
+                    this.loaded = true; // Mark as loaded even if failed to prevent repeated attempts
+                }
+            },
+
+            // Search for a word in the predefined vocabulary
+            findWord(word, language = 'dutch') {
+                if (!this.loaded) {
+                    console.warn('Predefined vocabulary not loaded yet');
+                    return null;
+                }
+
+                // Normalize the search word (lowercase, trim)
+                const searchWord = word.toLowerCase().trim();
+
+                // For Dutch language, search in the predefined vocabulary
+                if (language === 'dutch') {
+                    return this.vocabulary.find(item =>
+                        item.dutch.toLowerCase() === searchWord
+                    );
+                }
+
+                // For other languages, we could extend this to support reverse lookup
+                // For now, only support Dutch as the source language
+                return null;
+            },
+
+            // Get translations for a word
+            getTranslations(word, language = 'dutch') {
+                const foundWord = this.findWord(word, language);
+                if (!foundWord) return [];
+
+                const translations = [];
+
+                // Convert the vocabulary data to the format expected by the app
+                if (foundWord.russian) {
+                    translations.push({
+                        text: foundWord.russian,
+                        language: 'russian'
+                    });
+                }
+
+                if (foundWord.english) {
+                    translations.push({
+                        text: foundWord.english,
+                        language: 'english'
+                    });
+                }
+
+                return translations;
+            }
+        };
+
+        // Google Translate language mapping
+        const GoogleTranslateHelper = {
+            // Map application language codes to Google Translate language codes
+            languageMap: {
+                'dutch': 'nl',
+                'english': 'en',
+                'french': 'fr',
+                'german': 'de',
+                'italian': 'it',
+                'spanish': 'es',
+                'russian': 'ru',
+                'other': 'auto'
+            },
+
+            // Generate Google Translate URL
+            generateTranslateUrl: function(word, sourceLanguage, targetLanguage = 'en') {
+                const sourceLang = this.languageMap[sourceLanguage] || 'auto';
+                const targetLang = this.languageMap[targetLanguage] || 'en';
+
+                return `https://translate.google.com/?sl=${sourceLang}&tl=${targetLang}&text=${encodeURIComponent(word)}&op=translate`;
+            },
+
+            // Set up Google Translate button
+            setupTranslateButton: function(word, sourceLanguage, targetLanguage = 'russian') {
+                const button = document.getElementById('open-google-translate-btn');
+
+                if (button) {
+                    const translateUrl = this.generateTranslateUrl(word, sourceLanguage, targetLanguage);
+
+                    // Remove any existing event listeners by cloning the button
+                    const newButton = button.cloneNode(true);
+                    button.parentNode.replaceChild(newButton, button);
+
+                    // Add new event listener to open Google Translate in a new tab
+                    newButton.addEventListener('click', () => {
+                        window.open(translateUrl, '_blank', 'noopener,noreferrer');
+                    });
+                }
+            }
+        };
+
+        // ===== DATA MANAGEMENT =====
+
+        const VocabularyManager = {
+            vocabulary: [],
+            lastId: 0,
+
+            init: function() {
+                const savedVocabulary = CookieManager.getCookie('vocabulary');
+                if (savedVocabulary) {
+                    this.vocabulary = savedVocabulary;
+                    // Find the highest ID in the vocabulary to ensure new IDs are always unique
+                    if (this.vocabulary.length > 0) {
+                        this.lastId = Math.max(...this.vocabulary.map(item => item.id));
+                    }
+                }
+            },
+
+            addWord: async function(word, wordLanguage, translations) {
+                // Ensure unique ID by incrementing the last used ID
+                this.lastId++;
+
+                // Check predefined vocabulary for automatic translations
+                let finalTranslations = [...translations];
+
+                // Only check predefined vocabulary if no translations provided or if it's Dutch
+                if (wordLanguage === 'dutch' && PreDefinedVocabulary.loaded) {
+                    const predefinedTranslations = PreDefinedVocabulary.getTranslations(word, wordLanguage);
+
+                    if (predefinedTranslations.length > 0) {
+                        // Merge predefined translations with existing ones, avoiding duplicates
+                        predefinedTranslations.forEach(predefinedTrans => {
+                            const exists = finalTranslations.some(existingTrans =>
+                                existingTrans.language === predefinedTrans.language &&
+                                existingTrans.text.toLowerCase() === predefinedTrans.text.toLowerCase()
+                            );
+
+                            if (!exists) {
+                                finalTranslations.push(predefinedTrans);
+                            }
+                        });
+
+                        console.log(`Auto-added ${predefinedTranslations.length} translations for "${word}"`);
+                    }
+                }
+
+                const newWord = {
+                    id: this.lastId,
+                    word: word,
+                    language: wordLanguage,
+                    translations: finalTranslations,
+                    dateAdded: new Date().toISOString(),
+                    lastPracticed: null,
+                    masteryLevel: 0
+                };
+
+                this.vocabulary.push(newWord);
+                this.saveVocabulary();
+                return newWord;
+            },
+
+            updateWord: function(id, updatedData) {
+                const index = this.vocabulary.findIndex(item => item.id === id);
+                if (index !== -1) {
+                    this.vocabulary[index] = { ...this.vocabulary[index], ...updatedData };
+                    this.saveVocabulary();
+                    return true;
+                }
+                return false;
+            },
+
+            deleteWord: function(id) {
+                const index = this.vocabulary.findIndex(item => item.id === id);
+                if (index !== -1) {
+                    this.vocabulary.splice(index, 1);
+                    this.saveVocabulary();
+                    return true;
+                }
+                return false;
+            },
+
+            saveVocabulary: function() {
+                CookieManager.setCookie('vocabulary', this.vocabulary, 365);
+            },
+
+            exportVocabulary: function() {
+                const dataStr = JSON.stringify(this.vocabulary, null, 2);
+                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+
+                const exportFileDefaultName = `vocabulary_export_${new Date().toISOString().slice(0, 10)}.json`;
+
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', dataUri);
+                linkElement.setAttribute('download', exportFileDefaultName);
+                linkElement.click();
+            },
+
+            importVocabulary: function(jsonData) {
+                try {
+                    const importedData = JSON.parse(jsonData);
+
+                    if (Array.isArray(importedData)) {
+                        // Merge with existing vocabulary, avoiding duplicates
+                        const existingIds = new Set(this.vocabulary.map(item => item.id));
+
+                        for (const item of importedData) {
+                            if (!existingIds.has(item.id)) {
+                                this.vocabulary.push(item);
+                            }
+                        }
+
+                        this.saveVocabulary();
+                        return true;
+                    }
+                    return false;
+                } catch (e) {
+                    console.error("Error importing vocabulary:", e);
+                    return false;
+                }
+            },
+
+            getFilteredVocabulary: function(searchTerm = '', language = 'all') {
+                return this.vocabulary.filter(item => {
+                    const matchesSearch = searchTerm === '' ||
+                        item.word.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        item.translations.some(t => t.text.toLowerCase().includes(searchTerm.toLowerCase()));
+
+                    const matchesLanguage = language === 'all' ||
+                        item.language === language ||
+                        item.translations.some(t => t.language === language);
+
+                    return matchesSearch && matchesLanguage;
+                });
+            }
+        };
+
+        // ===== UI MANAGEMENT =====
+
+        const UIManager = {
+            init: function() {
+                this.initThemeToggle();
+                this.initAddWordForm();
+                this.initVocabularyList();
+                this.initSearchAndFilter();
+                this.initImportExport();
+                this.initGames();
+            },
+
+            initThemeToggle: function() {
+                const themeToggleBtn = document.getElementById('theme-toggle-btn');
+                const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+                // Set initial theme based on user preference
+                if (prefersDarkScheme.matches) {
+                    document.body.classList.add('dark-theme');
+                    themeToggleBtn.textContent = '☀️';
+                }
+
+                themeToggleBtn.addEventListener('click', () => {
+                    document.body.classList.toggle('dark-theme');
+                    themeToggleBtn.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+                });
+            },
+
+            initAddWordForm: function() {
+                const addWordBtn = document.getElementById('add-word-btn');
+
+                addWordBtn.addEventListener('click', async () => {
+                    const wordInput = document.getElementById('word-input');
+                    const wordLanguage = document.getElementById('word-language').value;
+
+                    const word = wordInput.value.trim();
+                    if (!word) {
+                        alert('Please enter a word');
+                        return;
+                    }
+
+                    // Show loading state
+                    addWordBtn.disabled = true;
+                    addWordBtn.textContent = 'Adding...';
+
+                    try {
+                        // Add word with empty translations array
+                        const newWord = await VocabularyManager.addWord(word, wordLanguage, []);
+
+                        // Reset form
+                        wordInput.value = '';
+
+                        // Update vocabulary list
+                        const currentSearchTerm = document.getElementById('search-input').value.trim();
+                        const currentSortOption = document.getElementById('sort-select').value;
+                        this.renderVocabularyList(currentSearchTerm, 'all', currentSortOption);
+
+                        // Show success message
+                        this.showNotification('Word added successfully!');
+
+                        // Open edit modal for the newly added word
+                        document.getElementById('edit-word-text').textContent = `${newWord.word} (${newWord.language})`;
+
+                        // Clear previous input
+                        document.getElementById('edit-translation-input').value = '';
+                        document.getElementById('edit-translation-language').value = 'russian';
+
+                        // Populate the existing translations list with any predefined translations
+                        const translationsList = document.getElementById('existing-translations-list');
+                        translationsList.innerHTML = '';
+
+                        if (newWord.translations.length === 0) {
+                            translationsList.innerHTML = '<p class="empty-state">No translations yet. Add your first translation below.</p>';
+                        } else {
+                            newWord.translations.forEach((translation, index) => {
+                                const translationItem = document.createElement('div');
+                                translationItem.className = 'translation-item';
+                                translationItem.innerHTML = `
+                                    <div class="translation-text">
+                                        <span class="translation-language">${translation.language.charAt(0).toUpperCase() + translation.language.slice(1)}:</span>
+                                        ${translation.text}
+                                    </div>
+                                    <div class="translation-actions">
+                                        <button class="edit-translation-btn" data-index="${index}">✏️</button>
+                                    </div>
+                                `;
+                                translationsList.appendChild(translationItem);
+
+                                // Add event listener for the edit button
+                                const editTranslationBtn = translationItem.querySelector('.edit-translation-btn');
+                                editTranslationBtn.addEventListener('click', () => {
+                                    // Load the translation data into the form
+                                    document.getElementById('edit-translation-input').value = translation.text;
+                                    document.getElementById('edit-translation-language').value = translation.language;
+
+                                    // Form title removed
+
+                                    // Store the translation index in the save button's data attribute
+                                    document.getElementById('save-translation-btn').dataset.translationIndex = index;
+                                    document.getElementById('save-translation-btn').textContent = 'Update Translation';
+                                });
+                            });
+                        }
+
+                        // Set up for adding a new translation
+                        document.getElementById('save-translation-btn').textContent = 'Add Translation';
+                        document.getElementById('save-translation-btn').dataset.translationIndex = '';
+
+                        // Show the modal
+                        document.getElementById('edit-word-modal').style.display = 'block';
+
+                        // Set up Google Translate button for the new word
+                        GoogleTranslateHelper.setupTranslateButton(newWord.word, newWord.language, 'russian');
+
+
+                        // Store the word ID in the save button's data attribute
+                        document.getElementById('save-translation-btn').dataset.wordId = newWord.id;
+
+                        // Clear the translation index (used for editing existing translations)
+                        document.getElementById('save-translation-btn').dataset.translationIndex = '';
+                        document.getElementById('save-translation-btn').textContent = 'Add Translation';
+                    } catch (error) {
+                        console.error('Error adding word:', error);
+                        this.showNotification('Error adding word. Please try again.', 'error');
+                    } finally {
+                        // Reset button state
+                        addWordBtn.disabled = false;
+                        addWordBtn.textContent = 'Add Word';
+                    }
+                });
+            },
+
+            initVocabularyList: function() {
+                this.renderVocabularyList('', 'all', 'dateAdded');
+            },
+
+            renderVocabularyList: function(searchTerm = '', language = 'all', sortOption = 'dateAdded') {
+                const vocabularyList = document.getElementById('vocabulary-list');
+                let filteredVocabulary = VocabularyManager.getFilteredVocabulary(searchTerm, language);
+
+                // Apply sorting
+                switch (sortOption) {
+                    case 'alphabetical':
+                        filteredVocabulary.sort((a, b) => a.word.toLowerCase().localeCompare(b.word.toLowerCase()));
+                        break;
+                    case 'progress':
+                        filteredVocabulary.sort((a, b) => b.masteryLevel - a.masteryLevel);
+                        break;
+                    case 'dateAdded':
+                    default:
+                        filteredVocabulary.sort((a, b) => new Date(a.dateAdded) - new Date(b.dateAdded));
+                        break;
+                }
+
+                vocabularyList.innerHTML = '';
+
+                if (filteredVocabulary.length === 0) {
+                    vocabularyList.innerHTML = '<p class="empty-state">No words found. Add some words to get started!</p>';
+                    return;
+                }
+
+                filteredVocabulary.forEach(item => {
+                    const wordCard = document.createElement('div');
+                    wordCard.className = 'word-card';
+                    wordCard.dataset.id = item.id;
+
+                    const translationsHtml = item.translations.map(t =>
+                        `<span class="translation"><strong>${t.language.charAt(0).toUpperCase() + t.language.slice(1)}:</strong> ${t.text}</span>`
+                    ).join('');
+
+                    const progressPercentage = Math.min(item.masteryLevel * 20, 100); // Convert 0-5 scale to 0-100%
+                    const progressColor = progressPercentage < 40 ? '#e74c3c' : progressPercentage < 80 ? '#f9a826' : '#2ecc71';
+
+                    wordCard.innerHTML = `
+                        <div class="word-details">
+                            <h3 class="word-text">${item.word} <span class="word-language">(${item.language.charAt(0).toUpperCase() + item.language.slice(1)})</span></h3>
+                            <div class="word-translations">
+                                ${translationsHtml}
+                            </div>
+                            <div class="word-progress">
+                                <div class="progress-label">Learning Progress:</div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill" style="width: ${progressPercentage}%; background-color: ${progressColor};"></div>
+                                </div>
+                                <div class="progress-text">${progressPercentage}%</div>
+                            </div>
+                        </div>
+                        <div class="word-actions">
+                            <button class="edit-word-btn" title="Edit translations">✏️</button>
+                            <button class="delete-word-btn" title="Delete word">🗑️</button>
+                        </div>
+                    `;
+
+                    vocabularyList.appendChild(wordCard);
+
+                    // Add event listeners
+                    const deleteBtn = wordCard.querySelector('.delete-word-btn');
+                    deleteBtn.addEventListener('click', () => {
+                        if (confirm('Are you sure you want to delete this word?')) {
+                            VocabularyManager.deleteWord(parseInt(wordCard.dataset.id));
+                            // Maintain current search and sort state after deletion
+                            const currentSearchTerm = document.getElementById('search-input').value.trim();
+                            const currentSortOption = document.getElementById('sort-select').value;
+                            this.renderVocabularyList(currentSearchTerm, 'all', currentSortOption);
+                            this.showNotification('Word deleted successfully!');
+                        }
+                    });
+
+                    const editBtn = wordCard.querySelector('.edit-word-btn');
+                    editBtn.addEventListener('click', () => {
+                        const wordId = parseInt(wordCard.dataset.id);
+                        const wordObj = VocabularyManager.vocabulary.find(w => w.id === wordId);
+
+                        if (wordObj) {
+                            // Populate the edit modal with word data
+                            document.getElementById('edit-word-text').textContent = `${wordObj.word} (${wordObj.language})`;
+
+                            // Clear previous input
+                            document.getElementById('edit-translation-input').value = '';
+                            document.getElementById('edit-translation-language').value = 'russian';
+
+                            // Populate the existing translations list
+                            const translationsList = document.getElementById('existing-translations-list');
+                            translationsList.innerHTML = '';
+
+                            if (wordObj.translations.length === 0) {
+                                translationsList.innerHTML = '<p class="empty-state">No translations yet. Add your first translation below.</p>';
+                            } else {
+                                wordObj.translations.forEach((translation, index) => {
+                                    const translationItem = document.createElement('div');
+                                    translationItem.className = 'translation-item';
+                                    translationItem.innerHTML = `
+                                        <div class="translation-text">
+                                            <span class="translation-language">${translation.language}:</span>
+                                            ${translation.text}
+                                        </div>
+                                        <div class="translation-actions">
+                                            <button class="edit-translation-btn" data-index="${index}">✏️</button>
+                                        </div>
+                                    `;
+                                    translationsList.appendChild(translationItem);
+
+                                    // Add event listener for the edit button
+                                    const editTranslationBtn = translationItem.querySelector('.edit-translation-btn');
+                                    editTranslationBtn.addEventListener('click', () => {
+                                        // Load the translation data into the form
+                                        document.getElementById('edit-translation-input').value = translation.text;
+                                        document.getElementById('edit-translation-language').value = translation.language;
+
+                                        // Form title removed
+
+                                        // Store the translation index in the save button's data attribute
+                                        document.getElementById('save-translation-btn').dataset.translationIndex = index;
+                                        document.getElementById('save-translation-btn').textContent = 'Update Translation';
+                                    });
+                                });
+                            }
+
+                            // Set up for adding a new translation
+                            document.getElementById('save-translation-btn').textContent = 'Add Translation';
+                            document.getElementById('save-translation-btn').dataset.translationIndex = '';
+
+                            // Show the modal
+                            document.getElementById('edit-word-modal').style.display = 'block';
+
+                            // Set up Google Translate button for the existing word
+                            GoogleTranslateHelper.setupTranslateButton(wordObj.word, wordObj.language, 'russian');
+
+
+                            // Store the word ID in the save button's data attribute
+                            document.getElementById('save-translation-btn').dataset.wordId = wordId;
+                        }
+                    });
+                });
+            },
+
+            initSearchAndFilter: function() {
+                const searchInput = document.getElementById('search-input');
+                const sortSelect = document.getElementById('sort-select');
+
+                const handleSearchFilter = () => {
+                    const searchTerm = searchInput.value.trim();
+                    const sortOption = sortSelect.value;
+                    // Always search across all languages with sorting
+                    this.renderVocabularyList(searchTerm, 'all', sortOption);
+                };
+
+                searchInput.addEventListener('input', handleSearchFilter);
+                sortSelect.addEventListener('change', handleSearchFilter);
+            },
+
+            initImportExport: function() {
+                const exportBtn = document.getElementById('export-btn');
+                const importFile = document.getElementById('import-file');
+                const importCsvBtn = document.getElementById('import-csv-btn');
+                const importTextBtn = document.getElementById('import-text-btn');
+                const csvImportModal = document.getElementById('csv-import-modal');
+                const textImportModal = document.getElementById('text-import-modal');
+
+                // Export vocabulary to JSON
+                exportBtn.addEventListener('click', () => {
+                    VocabularyManager.exportVocabulary();
+                });
+
+                // Import vocabulary from JSON file
+                importFile.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+                    if (!file) return;
+
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const success = VocabularyManager.importVocabulary(e.target.result);
+                        if (success) {
+                            const currentSearchTerm = document.getElementById('search-input').value.trim();
+                            const currentSortOption = document.getElementById('sort-select').value;
+                            this.renderVocabularyList(currentSearchTerm, 'all', currentSortOption);
+                            this.showNotification('Vocabulary imported successfully!');
+                        } else {
+                            this.showNotification('Error importing vocabulary. Invalid format.', 'error');
+                        }
+                        importFile.value = '';
+                    };
+                    reader.readAsText(file);
+                });
+
+                // Open CSV import modal
+                importCsvBtn.addEventListener('click', () => {
+                    // Clear previous data
+                    document.getElementById('csv-data').value = '';
+                    document.getElementById('csv-column-languages-container').innerHTML = '';
+
+                    // Show the modal
+                    csvImportModal.style.display = 'block';
+
+                    // Add event listener for CSV data input to detect columns
+                    document.getElementById('csv-data').addEventListener('input', this.handleCsvDataInput);
+                });
+
+                // Open text import modal
+                importTextBtn.addEventListener('click', () => {
+                    // Clear previous data
+                    document.getElementById('import-text').value = '';
+
+                    // Show the modal
+                    textImportModal.style.display = 'block';
+                });
+
+                // Close modals when clicking on X
+                document.querySelectorAll('.close-modal').forEach(closeBtn => {
+                    closeBtn.addEventListener('click', function() {
+                        this.closest('.modal').style.display = 'none';
+                    });
+                });
+
+                // Close modals when clicking outside
+                window.addEventListener('click', (event) => {
+                    if (event.target === csvImportModal) {
+                        csvImportModal.style.display = 'none';
+                    }
+                    if (event.target === textImportModal) {
+                        textImportModal.style.display = 'none';
+                    }
+                    if (event.target === document.getElementById('edit-word-modal')) {
+                        document.getElementById('edit-word-modal').style.display = 'none';
+                    }
+                });
+
+
+                // Handle Done button click - save any pending translation and close modal
+                document.getElementById('cancel-edit-btn').addEventListener('click', () => {
+                    const translationText = document.getElementById('edit-translation-input').value.trim();
+
+                    // If there's text in the translation input, save it first
+                    if (translationText) {
+                        // Trigger the save translation button click to save the current translation
+                        document.getElementById('save-translation-btn').click();
+                    }
+
+                    // Close the modal
+                    document.getElementById('edit-word-modal').style.display = 'none';
+
+                    // Clear inputs for next time
+                    document.getElementById('edit-translation-input').value = '';
+                    document.getElementById('edit-translation-language').value = 'russian';
+                    document.getElementById('save-translation-btn').textContent = 'Add Translation';
+                    document.getElementById('save-translation-btn').dataset.translationIndex = '';
+                });
+
+                // Process CSV data
+                document.getElementById('process-csv-btn').addEventListener('click', this.processCsvData.bind(this));
+
+                // Process text data
+                document.getElementById('process-text-btn').addEventListener('click', this.processTextData.bind(this));
+
+                // Handle save translation button in edit word modal
+                document.getElementById('save-translation-btn').addEventListener('click', () => {
+                    const wordId = parseInt(document.getElementById('save-translation-btn').dataset.wordId);
+                    const translationText = document.getElementById('edit-translation-input').value.trim();
+                    const translationLanguage = document.getElementById('edit-translation-language').value;
+                    const translationIndex = document.getElementById('save-translation-btn').dataset.translationIndex;
+
+                    if (!translationText) {
+                        this.showNotification('Please enter a translation', 'error');
+                        return;
+                    }
+
+                    // Find the word in the vocabulary
+                    const wordObj = VocabularyManager.vocabulary.find(w => w.id === wordId);
+
+                    if (wordObj) {
+                        // Create a copy of the translations array
+                        const updatedTranslations = [...wordObj.translations];
+
+                        if (translationIndex === '') {
+                            // Add a new translation
+                            updatedTranslations.push({
+                                text: translationText,
+                                language: translationLanguage
+                            });
+
+                            // Show success notification
+                            this.showNotification('Translation added successfully!');
+                        } else {
+                            // Update existing translation
+                            const index = parseInt(translationIndex);
+                            updatedTranslations[index] = {
+                                text: translationText,
+                                language: translationLanguage
+                            };
+
+                            // Show success notification
+                            this.showNotification('Translation updated successfully!');
+                        }
+
+                        // Update the word with the new translations
+                        VocabularyManager.updateWord(wordId, { translations: updatedTranslations });
+
+                        // Refresh the existing translations list
+                        const translationsList = document.getElementById('existing-translations-list');
+                        translationsList.innerHTML = '';
+
+                        if (updatedTranslations.length === 0) {
+                            translationsList.innerHTML = '<p class="empty-state">No translations yet. Add your first translation below.</p>';
+                        } else {
+                            updatedTranslations.forEach((translation, index) => {
+                                const translationItem = document.createElement('div');
+                                translationItem.className = 'translation-item';
+                                translationItem.innerHTML = `
+                                    <div class="translation-text">
+                                        <span class="translation-language">${translation.language}:</span>
+                                        ${translation.text}
+                                    </div>
+                                    <div class="translation-actions">
+                                        <button class="edit-translation-btn" data-index="${index}">✏️</button>
+                                    </div>
+                                `;
+                                translationsList.appendChild(translationItem);
+
+                                // Add event listener for the edit button
+                                const editTranslationBtn = translationItem.querySelector('.edit-translation-btn');
+                                editTranslationBtn.addEventListener('click', () => {
+                                    // Load the translation data into the form
+                                    document.getElementById('edit-translation-input').value = translation.text;
+                                    document.getElementById('edit-translation-language').value = translation.language;
+
+                                    // Form title removed
+
+                                    // Store the translation index in the save button's data attribute
+                                    document.getElementById('save-translation-btn').dataset.translationIndex = index;
+                                    document.getElementById('save-translation-btn').textContent = 'Update Translation';
+                                });
+                            });
+                        }
+
+                        // Reset form for adding a new translation
+                        document.getElementById('edit-translation-input').value = '';
+                        document.getElementById('edit-translation-language').value = 'russian';
+                        document.getElementById('save-translation-btn').dataset.translationIndex = '';
+                        document.getElementById('save-translation-btn').textContent = 'Add Translation';
+
+                        // Refresh the vocabulary list
+                        const currentSearchTerm = document.getElementById('search-input').value.trim();
+                        const currentSortOption = document.getElementById('sort-select').value;
+                        this.renderVocabularyList(currentSearchTerm, 'all', currentSortOption);
+                    }
+                });
+
+                // Handle reset button click
+                document.getElementById('reset-btn').addEventListener('click', () => {
+                    if (confirm('Are you sure you want to reset the application? This will delete all your words and settings.')) {
+                        // Clear all cookies
+                        this.resetApplication();
+                    }
+                });
+            },
+
+            handleCsvDataInput: function(event) {
+                const csvData = event.target.value.trim();
+                if (!csvData) return;
+
+                // Try to detect columns by splitting the first line
+                const firstLine = csvData.split('\n')[0];
+                const columns = firstLine.split(',');
+
+                // If we have more than one column, create language selectors for each additional column
+                if (columns.length > 1) {
+                    const container = document.getElementById('csv-column-languages-container');
+                    container.innerHTML = '';
+
+                    for (let i = 1; i < columns.length; i++) {
+                        const columnSelector = document.createElement('div');
+                        columnSelector.className = 'form-group';
+                        columnSelector.innerHTML = `
+                            <label for="column-language-${i}">Column ${i+1} Language:</label>
+                            <select id="column-language-${i}" class="column-language">
+                                <option value="english">English</option>
+                                <option value="russian">Russian</option>
+                                <option value="dutch">Dutch</option>
+                                <option value="french">French</option>
+                                <option value="german">German</option>
+                                <option value="spanish">Spanish</option>
+                                <option value="italian">Italian</option>
+                                <option value="other">Other</option>
+                            </select>
+                        `;
+                        container.appendChild(columnSelector);
+                    }
+                }
+            },
+
+            processCsvData: function() {
+                const csvData = document.getElementById('csv-data').value.trim();
+                if (!csvData) {
+                    this.showNotification('Please enter CSV data', 'error');
+                    return;
+                }
+
+                const wordLanguage = document.getElementById('csv-word-language').value;
+                const lines = csvData.split('\n').filter(line => line.trim());
+
+                // Get column languages
+                const columnLanguages = [];
+                document.querySelectorAll('.column-language').forEach(select => {
+                    columnLanguages.push(select.value);
+                });
+
+                let addedCount = 0;
+                let skippedCount = 0;
+
+                // Process each line
+                for (const line of lines) {
+                    const columns = line.split(',').map(col => col.trim());
+                    const word = columns[0];
+
+                    if (!word) {
+                        skippedCount++;
+                        continue;
+                    }
+
+                    // Create translations from additional columns
+                    const translations = [];
+                    for (let i = 1; i < columns.length && i <= columnLanguages.length; i++) {
+                        if (columns[i]) {
+                            translations.push({
+                                text: columns[i],
+                                language: columnLanguages[i-1]
+                            });
+                        }
+                    }
+
+                    // Add the word to vocabulary
+                    VocabularyManager.addWord(word, wordLanguage, translations);
+                    addedCount++;
+                }
+
+                // Update the vocabulary list
+                const currentSearchTerm = document.getElementById('search-input').value.trim();
+                const currentSortOption = document.getElementById('sort-select').value;
+                this.renderVocabularyList(currentSearchTerm, 'all', currentSortOption);
+
+                // Show notification
+                if (addedCount > 0) {
+                    this.showNotification(`Added ${addedCount} words to vocabulary${skippedCount > 0 ? `, skipped ${skippedCount}` : ''}`, 'success');
+                } else {
+                    this.showNotification('No words were added to vocabulary', 'error');
+                }
+
+                // Close the modal
+                document.getElementById('csv-import-modal').style.display = 'none';
+            },
+
+            processTextData: async function() {
+                const text = document.getElementById('import-text').value.trim();
+                if (!text) {
+                    this.showNotification('Please enter text', 'error');
+                    return;
+                }
+
+                const wordLanguage = document.getElementById('text-word-language').value;
+
+                // Extract words from text (split by spaces, punctuation, etc.)
+                const wordRegex = /\b[\w']+\b/g;
+                const matches = text.match(wordRegex) || [];
+
+                // Convert to lowercase and remove duplicates
+                const uniqueWords = [...new Set(matches.map(word => word.toLowerCase()))];
+
+                // Check which words already exist in vocabulary
+                const existingWords = new Set(
+                    VocabularyManager.vocabulary
+                        .filter(item => item.language === wordLanguage)
+                        .map(item => item.word.toLowerCase())
+                );
+
+                // Add new words to vocabulary with predefined translations
+                let addedCount = 0;
+                let translationsAddedCount = 0;
+
+                for (const word of uniqueWords) {
+                    if (!existingWords.has(word)) {
+                        const newWord = await VocabularyManager.addWord(word, wordLanguage, []);
+                        addedCount++;
+
+                        // Count how many translations were automatically added
+                        if (newWord.translations.length > 0) {
+                            translationsAddedCount += newWord.translations.length;
+                        }
+                    }
+                }
+
+                // Update the vocabulary list
+                const currentSearchTerm = document.getElementById('search-input').value.trim();
+                const currentSortOption = document.getElementById('sort-select').value;
+                this.renderVocabularyList(currentSearchTerm, 'all', currentSortOption);
+
+                // Show notification with translation info
+                if (addedCount > 0) {
+                    let message = `Added ${addedCount} new words to vocabulary`;
+                    if (translationsAddedCount > 0) {
+                        message += ` with ${translationsAddedCount} automatic translations`;
+                    }
+                    this.showNotification(message, 'success');
+                } else {
+                    this.showNotification('No new words were added to vocabulary', 'info');
+                }
+
+                // Close the modal
+                document.getElementById('text-import-modal').style.display = 'none';
+            },
+
+            initGames: function() {
+                const flashcardsBtn = document.querySelector('#flashcards-game .game-btn');
+                const matchingBtn = document.querySelector('#matching-game .game-btn');
+                const quizBtn = document.querySelector('#quiz-game .game-btn');
+                const scrambleBtn = document.querySelector('#scramble-game .game-btn');
+                const modal = document.getElementById('game-modal');
+                const closeModal = document.querySelector('.close-modal');
+                const gameContainer = document.getElementById('game-container');
+
+                // Close modal when clicking X or outside the modal
+                closeModal.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                });
+
+                window.addEventListener('click', (event) => {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+
+                // Flashcards game
+                flashcardsBtn.addEventListener('click', () => {
+                    if (VocabularyManager.vocabulary.length < 3) {
+                        this.showNotification('Add at least 3 words to play games', 'error');
+                        return;
+                    }
+
+                    gameContainer.innerHTML = `
+                        <h2>Flashcards</h2>
+                        <div class="flashcard-container">
+                            <div class="flashcard">
+                                <div class="flashcard-inner">
+                                    <div class="flashcard-front">
+                                        <h3 id="flashcard-word"></h3>
+                                        <p id="flashcard-language"></p>
+                                    </div>
+                                    <div class="flashcard-back">
+                                        <div id="flashcard-translations"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flashcard-controls">
+                            <button id="prev-flashcard">Previous</button>
+                            <button id="flip-flashcard">Flip Card</button>
+                            <button id="next-flashcard">Next</button>
+                        </div>
+                    `;
+
+                    modal.style.display = 'block';
+
+                    // Initialize flashcards
+                    const flashcardWords = [...VocabularyManager.vocabulary];
+                    let currentIndex = 0;
+
+                    const flashcard = document.querySelector('.flashcard');
+                    const wordElement = document.getElementById('flashcard-word');
+                    const languageElement = document.getElementById('flashcard-language');
+                    const translationsElement = document.getElementById('flashcard-translations');
+
+                    const updateFlashcard = () => {
+                        const currentWord = flashcardWords[currentIndex];
+                        wordElement.textContent = currentWord.word;
+                        languageElement.textContent = currentWord.language;
+
+                        translationsElement.innerHTML = '';
+                        currentWord.translations.forEach(translation => {
+                            const translationEl = document.createElement('p');
+                            translationEl.innerHTML = `<strong>${translation.language}:</strong> ${translation.text}`;
+                            translationsElement.appendChild(translationEl);
+                        });
+
+                        // Reset card to front side
+                        flashcard.classList.remove('flipped');
+                    };
+
+                    updateFlashcard();
+
+                    // Flip card
+                    document.getElementById('flip-flashcard').addEventListener('click', () => {
+                        flashcard.classList.toggle('flipped');
+                    });
+
+                    // Navigation
+                    document.getElementById('prev-flashcard').addEventListener('click', () => {
+                        currentIndex = (currentIndex - 1 + flashcardWords.length) % flashcardWords.length;
+                        updateFlashcard();
+                    });
+
+                    document.getElementById('next-flashcard').addEventListener('click', () => {
+                        currentIndex = (currentIndex + 1) % flashcardWords.length;
+                        updateFlashcard();
+                    });
+                });
+
+                // Matching game
+                matchingBtn.addEventListener('click', () => {
+                    if (VocabularyManager.vocabulary.length < 3) {
+                        this.showNotification('Add at least 3 words to play games', 'error');
+                        return;
+                    }
+
+                    // Get random words for the game (only words with translations)
+                    const gameWords = [...VocabularyManager.vocabulary]
+                        .filter(word => word.translations && word.translations.length > 0)
+                        .sort(() => 0.5 - Math.random())
+                        .slice(0, 5);
+
+                    if (gameWords.length < 3) {
+                        this.showNotification('Add at least 3 words with translations to play the matching game', 'error');
+                        return;
+                    }
+
+                    const wordPairs = [];
+                    gameWords.forEach(word => {
+                        // Add original word
+                        wordPairs.push({
+                            id: `word-${word.id}`,
+                            text: word.word,
+                            type: 'word',
+                            matchId: `translation-${word.id}`
+                        });
+
+                        // Add a random translation
+                        const randomTranslation = word.translations[Math.floor(Math.random() * word.translations.length)];
+                        wordPairs.push({
+                            id: `translation-${word.id}`,
+                            text: randomTranslation.text,
+                            type: 'translation',
+                            matchId: `word-${word.id}`
+                        });
+                    });
+
+                    // Shuffle all pairs
+                    const shuffledPairs = wordPairs.sort(() => 0.5 - Math.random());
+
+                    gameContainer.innerHTML = `
+                        <h2>Word Matching</h2>
+                        <p>Match each word with its correct translation.</p>
+                        <div class="matching-game-container">
+                            <div class="matching-cards">
+                                ${shuffledPairs.map(pair => `
+                                    <div class="matching-card" data-id="${pair.id}" data-match-id="${pair.matchId}">
+                                        <div class="matching-card-inner">
+                                            <div class="matching-card-front"></div>
+                                            <div class="matching-card-back">${pair.text}</div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="game-score">
+                            <p>Matches: <span id="match-count">0</span>/${gameWords.length}</p>
+                        </div>
+                    `;
+
+                    modal.style.display = 'block';
+
+                    // Game logic
+                    const cards = document.querySelectorAll('.matching-card');
+                    let flippedCards = [];
+                    let matchedPairs = 0;
+
+                    cards.forEach(card => {
+                        card.addEventListener('click', () => {
+                            // Skip if card is already matched or flipped
+                            if (card.classList.contains('matched') || card.classList.contains('flipped') || flippedCards.length >= 2) {
+                                return;
+                            }
+
+                            // Flip card
+                            card.classList.add('flipped');
+                            flippedCards.push(card);
+
+                            // Check for match if two cards are flipped
+                            if (flippedCards.length === 2) {
+                                const card1 = flippedCards[0];
+                                const card2 = flippedCards[1];
+
+                                if (card1.dataset.matchId === card2.dataset.id && card2.dataset.matchId === card1.dataset.id) {
+                                    // Match found
+                                    setTimeout(() => {
+                                        card1.classList.add('matched');
+                                        card2.classList.add('matched');
+                                        flippedCards = [];
+                                        matchedPairs++;
+                                        document.getElementById('match-count').textContent = matchedPairs;
+
+                                        // Check if game is complete
+                                        if (matchedPairs === gameWords.length) {
+                                            this.showNotification('Congratulations! You matched all pairs!', 'success');
+                                        }
+                                    }, 500);
+                                } else {
+                                    // No match
+                                    setTimeout(() => {
+                                        card1.classList.remove('flipped');
+                                        card2.classList.remove('flipped');
+                                        flippedCards = [];
+                                    }, 1000);
+                                }
+                            }
+                        });
+                    });
+                });
+
+                // Quiz game
+                quizBtn.addEventListener('click', () => {
+                    // Get words with translations for the quiz
+                    const wordsWithTranslations = [...VocabularyManager.vocabulary]
+                        .filter(word => word.translations && word.translations.length > 0);
+
+                    if (wordsWithTranslations.length < 4) {
+                        this.showNotification('Add at least 4 words with translations to play the quiz game', 'error');
+                        return;
+                    }
+
+                    // Get random words for the quiz
+                    const allWords = wordsWithTranslations;
+                    const quizWords = [];
+                    const usedIndices = new Set();
+
+                    // Select 5 random words (or fewer if not enough words)
+                    const questionCount = Math.min(5, allWords.length);
+
+                    for (let i = 0; i < questionCount; i++) {
+                        let randomIndex;
+                        do {
+                            randomIndex = Math.floor(Math.random() * allWords.length);
+                        } while (usedIndices.has(randomIndex));
+
+                        usedIndices.add(randomIndex);
+                        quizWords.push(allWords[randomIndex]);
+                    }
+
+                    gameContainer.innerHTML = `
+                        <h2>Vocabulary Quiz</h2>
+                        <div class="quiz-container">
+                            <div class="quiz-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <p>Question <span id="current-question">1</span>/${quizWords.length}</p>
+                            </div>
+                            <div class="quiz-question">
+                                <h3 id="quiz-word"></h3>
+                                <p id="quiz-language"></p>
+                                <div class="quiz-options" id="quiz-options"></div>
+                            </div>
+                            <div class="quiz-controls">
+                                <button id="next-question" disabled>Next Question</button>
+                            </div>
+                            <div class="quiz-results" id="quiz-results" style="display: none;">
+                                <h3>Quiz Results</h3>
+                                <p>You scored: <span id="quiz-score">0</span>/${quizWords.length}</p>
+                                <button id="restart-quiz">Try Again</button>
+                            </div>
+                        </div>
+                    `;
+
+                    modal.style.display = 'block';
+
+                    // Quiz logic
+                    let currentQuestionIndex = 0;
+                    let score = 0;
+
+                    const showQuestion = () => {
+                        const currentWord = quizWords[currentQuestionIndex];
+                        const questionElement = document.getElementById('quiz-word');
+                        const languageElement = document.getElementById('quiz-language');
+                        const optionsElement = document.getElementById('quiz-options');
+                        const nextButton = document.getElementById('next-question');
+
+                        // Update progress
+                        document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+                        document.querySelector('.progress-fill').style.width = `${((currentQuestionIndex + 1) / quizWords.length) * 100}%`;
+
+                        // Set question
+                        questionElement.textContent = currentWord.word;
+                        languageElement.textContent = `(${currentWord.language})`;
+
+                        // Get correct answer
+                        const correctTranslation = currentWord.translations[Math.floor(Math.random() * currentWord.translations.length)];
+
+                        // Generate options (1 correct, 3 incorrect)
+                        const options = [correctTranslation];
+
+                        // Add incorrect options
+                        while (options.length < 4 && options.length < allWords.length) {
+                            const randomWordIndex = Math.floor(Math.random() * allWords.length);
+                            const randomWord = allWords[randomWordIndex];
+
+                            // Skip if it's the current word
+                            if (randomWord.id === currentWord.id) continue;
+
+                            const randomTranslation = randomWord.translations[Math.floor(Math.random() * randomWord.translations.length)];
+
+                            // Check if this option is already included
+                            if (!options.some(opt => opt.text === randomTranslation.text)) {
+                                options.push(randomTranslation);
+                            }
+                        }
+
+                        // Shuffle options
+                        const shuffledOptions = options.sort(() => 0.5 - Math.random());
+
+                        // Render options
+                        optionsElement.innerHTML = '';
+                        shuffledOptions.forEach((option, index) => {
+                            const optionElement = document.createElement('div');
+                            optionElement.className = 'quiz-option';
+                            optionElement.textContent = `${option.text} (${option.language})`;
+                            optionElement.dataset.correct = option === correctTranslation;
+
+                            optionElement.addEventListener('click', () => {
+                                // Disable all options after selection
+                                document.querySelectorAll('.quiz-option').forEach(opt => {
+                                    opt.classList.add('disabled');
+
+                                    if (opt.dataset.correct === 'true') {
+                                        opt.classList.add('correct');
+                                    }
+                                });
+
+                                if (option === correctTranslation) {
+                                    optionElement.classList.add('selected', 'correct');
+                                    score++;
+                                } else {
+                                    optionElement.classList.add('selected', 'incorrect');
+                                }
+
+                                nextButton.disabled = false;
+                            });
+
+                            optionsElement.appendChild(optionElement);
+                        });
+
+                        // Reset next button
+                        nextButton.disabled = true;
+                    };
+
+                    const showResults = () => {
+                        document.querySelector('.quiz-question').style.display = 'none';
+                        document.querySelector('.quiz-controls').style.display = 'none';
+                        document.getElementById('quiz-results').style.display = 'block';
+                        document.getElementById('quiz-score').textContent = score;
+                    };
+
+                    // Initialize first question
+                    showQuestion();
+
+                    // Next question button
+                    document.getElementById('next-question').addEventListener('click', () => {
+                        currentQuestionIndex++;
+
+                        if (currentQuestionIndex < quizWords.length) {
+                            showQuestion();
+                        } else {
+                            showResults();
+                        }
+                    });
+
+                    // Restart quiz button
+                    document.getElementById('restart-quiz')?.addEventListener('click', () => {
+                        currentQuestionIndex = 0;
+                        score = 0;
+                        document.querySelector('.quiz-question').style.display = 'block';
+                        document.querySelector('.quiz-controls').style.display = 'block';
+                        document.getElementById('quiz-results').style.display = 'none';
+                        showQuestion();
+                    });
+                });
+
+                // Word Scramble game
+                scrambleBtn.addEventListener('click', () => {
+                    if (VocabularyManager.vocabulary.length < 3) {
+                        this.showNotification('Add at least 3 words to play games', 'error');
+                        return;
+                    }
+
+                    // Get random words for the game
+                    const gameWords = [...VocabularyManager.vocabulary]
+                        .filter(word => word.word.length > 2) // Only use words with at least 3 letters
+                        .sort(() => 0.5 - Math.random())
+                        .slice(0, 10); // Use up to 10 words
+
+                    if (gameWords.length < 3) {
+                        this.showNotification('Add more words with at least 3 letters', 'error');
+                        return;
+                    }
+
+                    gameContainer.innerHTML = `
+                        <h2>Word Scramble</h2>
+                        <div class="scramble-container">
+                            <div class="scramble-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <p>Word <span id="current-word-index">1</span>/${gameWords.length}</p>
+                            </div>
+                            <div class="scramble-game">
+                                <h3>Unscramble this word:</h3>
+                                <div class="scrambled-word" id="scrambled-word"></div>
+                                <p id="word-language"></p>
+                                <div id="word-translations"></div>
+                                <div class="scramble-input">
+                                    <input type="text" id="unscramble-input" placeholder="Type the correct word">
+                                    <button id="check-answer" class="primary-btn">Check</button>
+                                </div>
+                                <div id="answer-feedback"></div>
+                            </div>
+                            <div class="scramble-controls">
+                                <button id="next-scramble" disabled>Next Word</button>
+                            </div>
+                            <div class="scramble-results" id="scramble-results" style="display: none;">
+                                <h3>Game Results</h3>
+                                <p>You scored: <span id="scramble-score">0</span>/${gameWords.length}</p>
+                                <button id="restart-scramble">Play Again</button>
+                            </div>
+                        </div>
+                    `;
+
+                    modal.style.display = 'block';
+
+                    // Game logic
+                    let currentWordIndex = 0;
+                    let score = 0;
+
+                    // Function to scramble a word
+                    const scrambleWord = (word) => {
+                        const letters = word.split('');
+                        let scrambled = word;
+
+                        // Keep scrambling until we get a different arrangement
+                        while (scrambled === word) {
+                            for (let i = letters.length - 1; i > 0; i--) {
+                                const j = Math.floor(Math.random() * (i + 1));
+                                [letters[i], letters[j]] = [letters[j], letters[i]]; // Swap letters
+                            }
+                            scrambled = letters.join('');
+                        }
+
+                        return scrambled;
+                    };
+
+                    const showWord = () => {
+                        const currentWord = gameWords[currentWordIndex];
+                        const scrambledWordElement = document.getElementById('scrambled-word');
+                        const languageElement = document.getElementById('word-language');
+                        const translationsElement = document.getElementById('word-translations');
+                        const inputElement = document.getElementById('unscramble-input');
+                        const nextButton = document.getElementById('next-scramble');
+                        const feedbackElement = document.getElementById('answer-feedback');
+
+                        // Update progress
+                        document.getElementById('current-word-index').textContent = currentWordIndex + 1;
+                        document.querySelector('.progress-fill').style.width = `${((currentWordIndex + 1) / gameWords.length) * 100}%`;
+
+                        // Set scrambled word
+                        const scrambled = scrambleWord(currentWord.word);
+                        scrambledWordElement.textContent = scrambled;
+                        languageElement.textContent = `(${currentWord.language.charAt(0).toUpperCase() + currentWord.language.slice(1)})`;
+
+                        // Display translations as hints
+                        if (currentWord.translations && currentWord.translations.length > 0) {
+                            const translationsHtml = currentWord.translations.map(t =>
+                                `<span><strong>${t.language.charAt(0).toUpperCase() + t.language.slice(1)}:</strong> ${t.text}</span>`
+                            ).join(' • ');
+                            translationsElement.innerHTML = `<p style="color: var(--text-color-light); font-style: italic; margin: var(--spacing-sm) 0;">Hint: ${translationsHtml}</p>`;
+                        } else {
+                            translationsElement.innerHTML = '';
+                        }
+
+                        // Clear input and feedback
+                        inputElement.value = '';
+                        feedbackElement.innerHTML = '';
+                        inputElement.disabled = false;
+                        document.getElementById('check-answer').disabled = false;
+
+                        // Reset next button
+                        nextButton.disabled = true;
+                    };
+
+                    const showResults = () => {
+                        document.querySelector('.scramble-game').style.display = 'none';
+                        document.querySelector('.scramble-controls').style.display = 'none';
+                        document.getElementById('scramble-results').style.display = 'block';
+                        document.getElementById('scramble-score').textContent = score;
+                    };
+
+                    // Initialize first word
+                    showWord();
+
+                    // Check answer button
+                    document.getElementById('check-answer').addEventListener('click', () => {
+                        const currentWord = gameWords[currentWordIndex];
+                        const userAnswer = document.getElementById('unscramble-input').value.trim().toLowerCase();
+                        const feedbackElement = document.getElementById('answer-feedback');
+
+                        if (userAnswer === currentWord.word.toLowerCase()) {
+                            feedbackElement.innerHTML = '<span class="correct-answer">Correct!</span>';
+                            score++;
+                        } else {
+                            feedbackElement.innerHTML = `<span class="incorrect-answer">Incorrect! The correct word is: ${currentWord.word}</span>`;
+                        }
+
+                        // Disable input and check button
+                        document.getElementById('unscramble-input').disabled = true;
+                        document.getElementById('check-answer').disabled = true;
+
+                        // Enable next button
+                        document.getElementById('next-scramble').disabled = false;
+                    });
+
+                    // Enter key to check answer
+                    document.getElementById('unscramble-input').addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter' && !document.getElementById('check-answer').disabled) {
+                            document.getElementById('check-answer').click();
+                        }
+                    });
+
+                    // Next word button
+                    document.getElementById('next-scramble').addEventListener('click', () => {
+                        currentWordIndex++;
+
+                        if (currentWordIndex < gameWords.length) {
+                            showWord();
+                        } else {
+                            showResults();
+                        }
+                    });
+
+                    // Restart game button
+                    document.getElementById('restart-scramble')?.addEventListener('click', () => {
+                        currentWordIndex = 0;
+                        score = 0;
+                        document.querySelector('.scramble-game').style.display = 'block';
+                        document.querySelector('.scramble-controls').style.display = 'block';
+                        document.getElementById('scramble-results').style.display = 'none';
+                        showWord();
+                    });
+                });
+            },
+
+            showNotification: function(message, type = 'success') {
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.textContent = message;
+
+                document.body.appendChild(notification);
+
+                // Animate in
+                setTimeout(() => {
+                    notification.classList.add('show');
+                }, 10);
+
+                // Remove after delay
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            },
+
+            resetApplication: function() {
+                // Delete all cookies
+                CookieManager.deleteCookie('vocabulary');
+                CookieManager.deleteCookie('cookie_consent');
+
+                // Show notification
+                this.showNotification('Application reset successful. Reloading...', 'success');
+
+                // Wait a moment for the notification to be visible, then reload
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+            }
+        };
+
+        // ===== COOKIE CONSENT =====
+
+        const CookieConsentManager = {
+            consentCookieName: 'cookie_consent',
+
+            init: function() {
+                try {
+                    // Check if user has already made a decision
+                    const consentDecision = CookieManager.getCookie(this.consentCookieName);
+
+                    // Make sure app container is initially visible
+                    // This ensures we can show either the app or the declined message
+                    document.querySelector('.app-container').style.display = 'block';
+
+                    if (consentDecision === null) {
+                        // No decision yet, show the consent modal
+                        this.showConsentModal();
+                    } else if (consentDecision === true) {
+                        // User has accepted cookies, initialize the app
+                        this.initializeApp();
+                    } else {
+                        // User has declined cookies, show message
+                        this.showDeclinedMessage();
+                    }
+
+                    // Add event listeners for consent buttons
+                    document.getElementById('accept-cookies').addEventListener('click', () => {
+                        this.acceptCookies();
+                    });
+
+                    document.getElementById('decline-cookies').addEventListener('click', () => {
+                        this.declineCookies();
+                    });
+                } catch (error) {
+                    console.error('Error initializing cookie consent:', error);
+                    // Fallback: initialize app anyway to prevent completely broken experience
+                    PreDefinedVocabulary.loadVocabulary().then(() => {
+                        VocabularyManager.init();
+                        UIManager.init();
+                    }).catch(err => {
+                        console.error('Error loading predefined vocabulary in fallback:', err);
+                        VocabularyManager.init();
+                        UIManager.init();
+                    });
+                }
+            },
+
+            showConsentModal: function() {
+                // Show the consent modal (hidden by default like other modals)
+                document.getElementById('cookie-consent-modal').style.display = 'block';
+
+                // Hide the app content
+                document.querySelector('.app-container').style.display = 'none';
+            },
+
+            acceptCookies: function() {
+                // Store consent decision
+                CookieManager.setCookie(this.consentCookieName, true, 365);
+
+                // Hide the consent modal
+                document.getElementById('cookie-consent-modal').style.display = 'none';
+
+                // Initialize the app
+                this.initializeApp();
+            },
+
+            declineCookies: function() {
+                // Store consent decision
+                CookieManager.setCookie(this.consentCookieName, false, 365);
+
+                // Show declined message
+                this.showDeclinedMessage();
+            },
+
+            showDeclinedMessage: function() {
+                // Hide the consent modal
+                document.getElementById('cookie-consent-modal').style.display = 'none';
+
+                // Replace app content with declined message
+                const appContainer = document.querySelector('.app-container');
+                appContainer.innerHTML = `
+                    <div class="cookie-declined-message">
+                        <h2>Cookies Required</h2>
+                        <p>This application requires cookies to function properly. Without cookies, we cannot save your vocabulary words.</p>
+                        <p>If you change your mind, please refresh the page and accept cookies.</p>
+                        <button id="reconsider-cookies" class="primary-btn">Reconsider</button>
+                    </div>
+                `;
+
+                // Show the app container
+                appContainer.style.display = 'block';
+
+                // Add event listener for reconsider button
+                document.getElementById('reconsider-cookies').addEventListener('click', () => {
+                    // Delete the consent cookie
+                    CookieManager.deleteCookie(this.consentCookieName);
+
+                    // Reload the page
+                    window.location.reload();
+                });
+            },
+
+            initializeApp: async function() {
+                // Show the app content
+                document.querySelector('.app-container').style.display = 'block';
+
+                // Load predefined vocabulary first
+                await PreDefinedVocabulary.loadVocabulary();
+
+                // Initialize the app
+                VocabularyManager.init();
+                UIManager.init();
+            }
+        };
+
+        // ===== INITIALIZATION =====
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize cookie consent manager instead of directly initializing the app
+            CookieConsentManager.init();
+        });
+    </script>
+
+</body>
+</html>
